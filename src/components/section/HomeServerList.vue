@@ -5,13 +5,6 @@
             <ServerIcon/>
             <ServerIcon/>
             <ServerIcon/>
-            <ServerIcon/>
-            <ServerIcon/>
-            <ServerIcon/>
-            <ServerIcon/>
-            <ServerIcon/>
-            <ServerIcon/>
-            <ServerIcon/>
             <ServerAddIcon/>
         </div>
     </section>
