@@ -11,7 +11,7 @@ let password = ref("");
 async function login(){
   const isConnected = await auth.login({username: username.value, password: password.value})
   if (isConnected){
-    router.push('/')
+    router.push({ name: 'Home' });
   }
 }
 </script>
