@@ -1,6 +1,5 @@
-* {
-    margin: 0;
-    padding: 0;
+// Base
+@import "./base/theme.scss";
+@import "./base/init.scss";
 
-    box-sizing: border-box;
-}
+// Section
