@@ -1,9 +1,49 @@
-// .login-page {
-//     &__button { // .login-page__button
-//         margin
-//     }
+.login-page {
+     &__button { // .login-page__button
+        font-family: 'Roboto', sans-serif;
+        font-size: 15px;
+        outline: 0;
+        border: 0;
+        width: 100%;
+        padding: 15px;
+        background: #FF5722;
+        color: white;
+        text-transform: uppercase;
+     }
 
-//     &__input {
-//         sfnjbfsjf
-//     }
-// }
+     &__input {
+        color: rgb(150, 141, 141);
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        width: 100%;
+        border: 0;
+        margin: 0 0 15px;
+        padding: 15px;
+        outline: 0;
+        text-align: center;
+        box-sizing: border-box;
+        background: rgb(218, 218, 218);
+     }
+
+     &__body{
+        font-family: 'Roboto', sans-serif;
+        background: $background-color;
+    }
+
+    &__container {
+        padding: 8% 0 0;
+        width: 365px;
+        margin: auto;
+    }
+
+    &__form {
+        
+            position: relative;
+            z-index: 1;
+            max-width: 350px;
+            margin: 0 auto 100px;
+            padding: 45px;
+            background: #FFFFFF;
+    }
+}
+
