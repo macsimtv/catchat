@@ -10,9 +10,9 @@ import HomeServerList from '../components/section/HomeServerList.vue';
   <main class="home">
     <div class="home__container">
       <HomeServerList/>
-      <div style="flex: 1;">
+      <section style="flex: 1;">
         <!-- ChatBox -->
-      </div>
+      </section>
       <HomeUserList/>
     </div>
   </main>

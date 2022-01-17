@@ -1,5 +1,14 @@
 .home {
+    height: calc(100% - 50px);
+
+    flex: 1;
+
     &__container {
+        height: 100%;
+
         display: flex;
+        gap: 15px;
+
+        padding: 15px;
     }
 }
