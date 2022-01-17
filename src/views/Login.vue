@@ -4,10 +4,16 @@ import { ref } from 'vue'
 </script>
 
 <template>
-  <h1>Login</h1>
+ 
+<div class="container">
+  <div class="form">
+    <form action="#" class="login-form">
+      <input type="text" name="username" placeholder="Username">
+      <input type="text" name="password" placeholder="Password">
+      <button type="submit" class="btn">Login</button>
+    </form>
+  </div>
+</div>
 
 </template>
 
-<style scoped>
-
-</style>
