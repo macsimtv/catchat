@@ -1,0 +1,18 @@
+.home-server-list {
+    height: 100%;
+
+    background-color: $primary-color;
+
+    border-radius: 15px;
+
+    &__container {
+        height: 100%;
+
+        display: grid;
+        grid-template-columns: 1fr;
+
+        gap: 15px;
+
+        padding: 15px;
+    }
+}
