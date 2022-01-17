@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 const apiClient = axios.create({
-  baseURL: "http://localhost:8082",
+  baseURL: "https://edu.tardigrade.land/msg",
   withCredentials: false,
   headers: {
     Accept: "application/json",

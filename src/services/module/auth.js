@@ -1,11 +1,15 @@
 import apiClient from "../http-common";
 export default {
-  //Items
+  //Auth
   login(form) {
     return apiClient.post("/login", form);
   },
 
   inscription(form) {
-    return apiClient.get("/signin");
+    return apiClient.post("/signin");
+  },
+
+  reconnection() {
+    return apiClient.post("/msg/protected/extend_session'");
   },
 };
