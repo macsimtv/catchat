@@ -4,8 +4,11 @@ $secondary-color: #28264f;
 
 :root {
   --color: $color;
-  --primary-color: $secondary-color;
+  --primary-color: $primary-color;
+  --secondary-color: $secondary-color;
 }
+$font: "Roboto", sans-serif;
+
 .theme {
   &--ocean {
     --color: #fff;
