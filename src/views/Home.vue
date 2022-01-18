@@ -10,7 +10,6 @@ import { onMounted, inject } from "vue";
 const { state, setStateProp } = inject("state");
 
 // Get Data
-
 onMounted(async () => {
   // Channels
   setStateProp("loading", true);

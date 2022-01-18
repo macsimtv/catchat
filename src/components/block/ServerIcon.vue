@@ -1,5 +1,5 @@
 <template>
-    <div :class="index == 0 ? 'active' : ''" :data-channel-id="channel.id" class="server-icon" :title="channel.name">
+    <div :class="state.currentChannel.id == channel.id ? 'active' : ''" :data-channel-id="channel.id" class="server-icon" :title="channel.name">
         <div class="server-icon__container">
             <img class="server-icon__picture" :src="channel.img" alt="Serveur Icon">
         </div>
@@ -7,8 +7,8 @@
 </template>
 
 <script setup>
-
-import { defineProps } from "vue";
+import { inject } from "vue";
+const { state, setStateProp } = inject("state");
 
 defineProps({
     channel: Object,
