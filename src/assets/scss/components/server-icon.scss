@@ -1,43 +1,47 @@
 .server-icon {
-    width: 75px;
-    height: 75px;
+  width: 75px;
+  height: 75px;
 
-    flex-shrink: 0;
+  flex-shrink: 0;
 
-    border-radius: 50%;
+  border-radius: 50%;
 
-    overflow: hidden;
+  overflow: hidden;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    border: 2px solid transparent;
+  border: 2px solid transparent;
 
-    transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 
-    &.active {
-        border-color: $color;
-    }
+  &.active {
+    border-color: $color;
+  }
 
-    &:hover {
-        border-radius: 25px;
-        
-    }
+  &:hover {
+    border-radius: 25px;
+  }
 
-    &__container {
-        width: 100%;
-        height: 100%;
+  &__container {
+    width: 100%;
+    height: 100%;
 
-        position: relative;
-    }
+    position: relative;
+  }
 
-    &__picture {
-        width: 100%;
-        height: 100%;
+  &__picture {
+    width: 100%;
+    height: 100%;
 
-        position: absolute;
-        top: 0;
-        left: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
 
-        object-fit: cover;
-    }
+    object-fit: cover;
+  }
+
+  &__loading {
+    background-color: var(--secondary-color);
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
 }

@@ -4,8 +4,8 @@ $secondary-color: #28264f;
 
 :root {
   --color: $color;
-  --primary-color: $primary-color;
-  --secondary-color: $secondary-color;
+  --primary-color: #{$primary-color};
+  --secondary-color: #{$secondary-color};
 }
 
 $font: "Roboto", sans-serif;
@@ -14,7 +14,7 @@ $font: "Roboto", sans-serif;
   &--ocean {
     --color: #fff;
     --primary-color: #35356c;
-    --secondary-color: #022B3A;
+    --secondary-color: #022b3a;
   }
 
   &--chocolate {
