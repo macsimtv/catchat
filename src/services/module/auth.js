@@ -6,6 +6,7 @@ export default {
     if (res.status == 200){
       localStorage['token'] = res.data.token
       localStorage['token_date'] = new Date().getTime()
+      localStorage['username'] = form.username
       return true
     }
     return false
