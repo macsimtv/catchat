@@ -5,14 +5,14 @@ import HomeServerList from '../components/section/HomeServerList.vue';
 </script>
 
 <template>
-  <Header/>
+  <Header />
   <main class="home">
     <div class="home__container">
-      <HomeServerList/>
-      <section style="flex: 1;">
+      <HomeServerList />
+      <section style="flex: 1">
         <!-- ChatBox -->
       </section>
-      <HomeUserList/>
+      <HomeUserList />
     </div>
   </main>
 </template>
