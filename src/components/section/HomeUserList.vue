@@ -5,35 +5,17 @@
                 Liste des utilisateurs
             </h3>
             <div class="home-user-list__list">
-                <div class="home-user-list__user">
-                    <img src="" alt="coucou">
-                    <p>
-                        pseudo
-                    </p>
-                </div>
-                <div class="home-user-list__user">
-                    <img src="" alt="coucou">
-                    <p>
-                        pseudo
-                    </p>
-                </div>
-                <div class="home-user-list__user">
-                    <img src="" alt="coucou">
-                    <p>
-                        pseudo
-                    </p>
-                </div>
-                <div class="home-user-list__user">
-                    <img src="" alt="coucou">
-                    <p>
-                        pseudo
-                    </p>
-                </div>
+                <UserItem/>
+                <UserItem/>
+                <UserItem/>
+                <UserItem/>
             </div>
         </div>
     </section>
 </template>
 
 <script setup>
+
+import UserItem from '../block/UserItem.vue';
 
 </script>
