@@ -1,6 +1,5 @@
 <script setup>
 import Header from '../components/Header.vue';
-
 import HomeUserList from '../components/section/HomeUserList.vue';
 import HomeServerList from '../components/section/HomeServerList.vue';
 </script>
