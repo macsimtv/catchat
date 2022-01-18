@@ -25,7 +25,7 @@ const messages = [{
 <template>
     <section class="home-chatbox">
         <div class="home-chatbox__container">
-            <Message v-for="msg in messages" :msg="msg" />
+            <Message v-for="(msg, index) in messages" :msg="msg" :key="index" />
         </div>
     </section>
 </template>
