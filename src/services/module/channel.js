@@ -1,7 +1,7 @@
 import apiClient from "../http-common";
 export default {
   async listOfChannel() {
-    return apiClient.get(`/msg/protected/user/channels`, {
+    return await apiClient.get(`/protected/user/channels`, {
       headers: {
         authorization: "Bearer " + localStorage["token"],
       },
@@ -9,8 +9,8 @@ export default {
   },
 
   async createChannel(channel) {
-    return apiClient.post(
-      `/msg/protected/channel`,
+    return await apiClient.post(
+      `/protected/channel`,
       {
         headers: {
           authorization: "Bearer " + localStorage["token"],
@@ -21,8 +21,8 @@ export default {
   },
 
   async updateMetaChannel(id, channel) {
-    return apiClient.get(
-      `/msg/protected/channel/${id}/update_metadata`,
+    return await apiClient.get(
+      `/protected/channel/${id}/update_metadata`,
       {
         headers: {
           authorization: "Bearer " + localStorage["token"],
@@ -33,14 +33,14 @@ export default {
   },
 
   async deleteChannel(idChannel) {
-    return apiClient.delete(`/msg/protected/channel/${idChannel}`, {
+    return await apiClient.delete(`/protected/channel/${idChannel}`, {
       headers: {
         authorization: "Bearer " + localStorage["token"],
       },
     });
   },
   async banUserFromChannel(idChannel, username, channel) {
-    return apiClient.delete(
+    return await apiClient.delete(
       `/msg/protected/channel/${idChannel}/user/${username}'`,
       {
         headers: {
@@ -52,8 +52,8 @@ export default {
   },
 
   async addUserInAChannel(idChannel, username) {
-    return apiClient.put(
-      `/msg/protected/channel/${idChannel}/user/${username}/`,
+    return await apiClient.put(
+      `/protected/channel/${idChannel}/user/${username}/`,
       {
         headers: {
           authorization: "Bearer " + localStorage["token"],
