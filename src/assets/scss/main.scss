@@ -2,14 +2,16 @@
 @import "./base/theme.scss";
 @import "./base/init.scss";
 
+// Section
+@import "./views/login.scss";
+@import "./components/header.scss";
 // Views
 @import "./components/header.scss";
 @import "./views/home.scss";
-@import "./views/login.scss";
 
 // Sections
-@import './section/home-server-list.scss';
+@import "./section/home-server-list.scss";
 
 // Components
-@import './components/server-icon.scss';
-@import './components/server-add-icon.scss';
+@import "./components/server-icon.scss";
+@import "./components/server-add-icon.scss";
