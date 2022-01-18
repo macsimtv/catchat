@@ -2,7 +2,7 @@
   <section class="home-server-list">
     <div class="home-server-list__container">
       <div v-if="state.loading">
-        <ServerLoading v-for="n in 3"></ServerLoading>
+        <ServerLoading v-for="index in 3" :key="index"></ServerLoading>
       </div>
       <template v-else>
         <ServerIcon
