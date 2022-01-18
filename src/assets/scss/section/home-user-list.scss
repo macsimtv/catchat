@@ -1,0 +1,22 @@
+.home-user-list {
+    min-width: 260px;
+
+    background-color: $primary-color;
+
+    border-radius: 15px;
+
+    &__container {
+        padding: 20px 15px;
+    }
+
+    &__title {
+        margin-bottom: 20px;
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+
+        gap: 10px;
+    }
+}
