@@ -1,0 +1,37 @@
+.home-chatbox {
+    flex: 1;
+    height: 100%;
+
+    background-color: $primary-color;
+
+    border-radius: 15px;
+
+    &__container {
+        margin: 15px;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 25px;
+    }
+
+    &__message {
+        background-color: $color;
+        height: 60px;
+        width: 100%;
+        border-radius: 15px;
+    }
+
+    &__message-title {
+        margin-top: 3px;
+        margin-left: 8px;
+        font-size: 17px;
+        color: black;
+    }
+
+    &__text {
+        margin: 8px;
+        color: black;
+    }
+}
