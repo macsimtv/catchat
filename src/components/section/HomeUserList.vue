@@ -4,7 +4,7 @@
       <h3 class="home-user-list__title">Liste des utilisateurs</h3>
       <div class="home-user-list__list">
         <UserItem
-          v-for="(user, index) in currentChannel.users"
+          v-for="(user, index) in state.currentChannel.users"
           :key="index"
           :user="user"
         />
@@ -18,5 +18,5 @@ import { computed, inject } from "vue";
 
 import UserItem from "../block/UserItem.vue";
 
-let { currentChannel } = inject("state");
+const { state } = inject("state");
 </script>

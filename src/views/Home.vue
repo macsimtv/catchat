@@ -7,25 +7,27 @@ import channel from "../services/module/channel";
 
 import { onMounted, inject } from "vue";
 /* import store from "../store/index"; */
-const store = inject("state");
+const { state, setStateProp } = inject("state");
 
 // Get Data
 
 onMounted(async () => {
   // Channels
-  store.loading = true;
+  setStateProp("loading", true);
   let { data } = await channel.listOfChannel();
-  store.channels.splice(0, store.channels.length, ...data);
-  store.currentChannel = data[0];
+  setStateProp("channels", data);
+  /*  store.channels.splice(0, store.channels.length, ...data); */
+  setStateProp("currentChannel", data[0]);
 
   // End Loading
-  store.loading = false;
+  setStateProp("loading", false);
+  /* store.loading = true; */
 });
 </script>
 
 <template>
   <Header />
-  <main v-if="!store.loading" class="home">
+  <main class="home">
     <div class="home__container">
       <HomeServerList />
       <HomeChatbox />
