@@ -8,12 +8,11 @@
 </template>
 
 <script setup>
-import { ref, watchEffect } from "vue";
 import store from "../../store/index";
 
 let channels = store.value.channels;
+store.value.currentChannel = channels[0];
 
 import ServerIcon from '../block/ServerIcon.vue';
 import ServerAddIcon from '../block/ServerAddIcon.vue';
-
 </script>

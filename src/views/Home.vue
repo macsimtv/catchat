@@ -14,8 +14,9 @@ import store from '../store/index';
 // Get Data
 onMounted(async () => {
   // Channels
-  let channels = await channel.listOfChannel();
-  store.value.channels.splice(0, store.value.channels.length, ...channels.data);
+  let { data } = await channel.listOfChannel();
+  store.value.channels.splice(0, store.value.channels.length, ...data);
+  store.value.currentChannel = data[0];
 });
 
 
@@ -28,7 +29,6 @@ onMounted(async () => {
       <HomeServerList />
       <HomeChatbox />
       <HomeUserList />
-      
     </div>
   </main>
 </template>

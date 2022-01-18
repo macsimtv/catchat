@@ -3,7 +3,7 @@
     <div class="home-user-list__container">
       <h3 class="home-user-list__title">Liste des utilisateurs</h3>
       <div class="home-user-list__list">
-        <UserItem v-for="user in users" />
+        <UserItem v-for="(user, index) in users" :key="index" />
       </div>
     </div>
   </section>
