@@ -7,7 +7,7 @@
       <div v-else class="user-item__picture">
         <img src="" alt="coucou" />
       </div>
-      <p class="user-item__username">Pseudo</p>
+      <p class="user-item__username">{{ username }}</p>
     </div>
   </div>
 </template>

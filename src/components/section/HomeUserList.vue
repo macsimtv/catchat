@@ -13,5 +13,5 @@
 import UserItem from "../block/UserItem.vue";
 import store from "../../store/index";
 
-let users = store.value.channels.users;
+let users = store.value.currentChannel.users;
 </script>
