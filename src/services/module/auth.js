@@ -1,8 +1,13 @@
-import apiClient from "../http-common";
+import apiClient from "../http-comon";
 export default {
   //Auth
-  login(form) {
-    return apiClient.post("/login", form);
+  async login(form) {
+    const res = await apiClient.post("/login", form);
+    if (res.status == 200){
+      localStorage['token'] = res.data.token
+      return true
+    }
+    return false
   },
 
   inscription(form) {

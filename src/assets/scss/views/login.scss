@@ -1,49 +1,78 @@
 .login-page {
-     &__button { // .login-page__button
-        font-family: 'Roboto', sans-serif;
-        font-size: 15px;
-        outline: 0;
-        border: 0;
-        width: 100%;
-        padding: 15px;
-        background: #FF5722;
-        color: white;
-        text-transform: uppercase;
-     }
+  height: 100%;
 
-     &__input {
-        color: rgb(150, 141, 141);
-        font-family: 'Roboto', sans-serif;
-        font-size: 14px;
-        width: 100%;
-        border: 0;
-        margin: 0 0 15px;
-        padding: 15px;
-        outline: 0;
-        text-align: center;
-        box-sizing: border-box;
-        background: rgb(218, 218, 218);
-     }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-     &__body{
-        font-family: 'Roboto', sans-serif;
-        background: $secondary-color;
-    }
+  background-image: url('./assets/img/duotone.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  
+  &__container {
+    width: 90%;
+    max-width: 365px;
+  }
 
-    &__container {
-        padding: 8% 0 0;
-        width: 365px;
-        margin: auto;
-    }
+  &__title {
+    margin-bottom: 25px;
 
-    &__form {
-        
-            position: relative;
-            z-index: 1;
-            max-width: 350px;
-            margin: 0 auto 100px;
-            padding: 45px;
-            background: #FFFFFF;
-    }
+    color: $color;
+
+    text-align: center;
+  }
+
+  &__button {
+    width: 100%;
+
+    padding: 15px;
+
+    color: $color;
+
+    font-family: $font;
+    font-size: 15px;
+
+    text-transform: uppercase;
+
+    outline: 0;
+    border: 0;
+    border-radius: 10px;
+    
+    background: $secondary-color;
+  }
+
+  &__input {
+    width: 100%;
+
+    margin: 0 0 15px;
+    padding: 15px;
+
+    color: rgb(150, 141, 141);
+
+    font-family: $font;
+    font-size: 14px;
+
+    text-align: left;
+    
+    outline: 0;
+    border: 0;
+    border-radius: 10px;
+
+    background: rgb(218, 218, 218);
+  }
+
+  &__form {
+    width: 100%;
+
+    margin: 0 auto 100px;
+    padding: 45px;
+
+    position: relative;
+    z-index: 1;
+    
+    background: $color;
+
+    border-radius: 10px;
+  }
 }
-
