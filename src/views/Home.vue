@@ -5,20 +5,21 @@ import HomeServerList from "../components/section/HomeServerList.vue";
 import HomeChatbox from "../components/section/HomeChatbox.vue";
 import channel from "../services/module/channel";
 
-import { onMounted } from "vue";
-import store from "../store/index";
+import { onMounted, inject } from "vue";
+/* import store from "../store/index"; */
+const store = inject("state");
 
 // Get Data
-store.value.loading = true;
 
 onMounted(async () => {
   // Channels
+  store.loading = true;
   let { data } = await channel.listOfChannel();
-  store.value.channels.splice(0, store.value.channels.length, ...data);
-  store.value.currentChannel = data[0];
+  store.channels.splice(0, store.channels.length, ...data);
+  store.currentChannel = data[0];
 
   // End Loading
-  store.value.loading = false;
+  store.loading = false;
 });
 </script>
 

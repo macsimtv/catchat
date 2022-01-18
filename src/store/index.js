@@ -1,6 +1,6 @@
-import { ref } from "vue";
+import { reactive } from "vue";
 
-const store = ref({
+const store = reactive({
   channels: [],
   messages: [],
   currentChannel: {},
