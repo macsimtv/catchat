@@ -17,4 +17,18 @@ const router = createRouter({
     history: createWebHistory(),
     routes,
 })
+
+/* AUTH */
+router.beforeEach((to, from, next) => {
+    if (to.fullPath.includes('login')){
+        return next()
+    }
+
+    if (localStorage['token'] && localStorage['token'].length && (new Date().getTime() - localStorage['token_date']) < (10800 * 1000)){
+        return next()
+    }
+
+    return router.push({ name: 'Login' });
+   
+  })
 export default router
