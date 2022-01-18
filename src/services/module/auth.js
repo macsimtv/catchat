@@ -5,13 +5,10 @@ export default {
     const res = await apiClient.post("/login", form);
     if (res.status == 200){
       localStorage['token'] = res.data.token
+      localStorage['token_date'] = new Date().getTime()
       return true
     }
     return false
-  },
-
-  inscription(form) {
-    return apiClient.post("/signin");
   },
 
   reconnection() {
