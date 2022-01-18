@@ -13,27 +13,27 @@
     <transition name="fade" appear>
       <div class="sub-menu" v-if="isOpen">
         <div v-for="(item, i) in items" :key="i" class="header__container">
-          <a :href="item.link" @click="logout">{{ item.title }} </a>
+          <p style="cursor: pointer" @click="logout">{{ item.title }} </p>
         </div>
       </div>
     </transition>
   </div>
 </template>
 
-<script>
-export default {
-  name: "dropdown",
-  props: ["title", "items"],
-  data() {
-    return {
-      isOpen: false,
-    };
-  },
-  methods: {
-    logout() {
-      localStorage.clear();
-      this.$router.push("/login");
-    },
-  },
-};
+<script setup>
+import { useRouter } from "vue-router";
+import { ref } from "vue";
+
+defineProps({
+  title: String,
+  items: Object,
+});
+
+const isOpen = ref(false);
+const router = useRouter();
+
+function logout() {
+  localStorage.clear();
+  router.push("/login");
+}
 </script>
