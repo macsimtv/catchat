@@ -2,12 +2,8 @@
 @import "./base/theme.scss";
 @import "./base/init.scss";
 
-<<<<<<< HEAD
-// Section
-@import "./views/login.scss";
-@import "./components/header.scss";
-=======
 // Views
+@import "./components/header.scss";
 @import "./views/home.scss";
 @import "./views/login.scss";
 
@@ -17,4 +13,3 @@
 // Components
 @import './components/server-icon.scss';
 @import './components/server-add-icon.scss';
->>>>>>> ea36eca6d5c81f7e571a984319e0f9db194b3db2
