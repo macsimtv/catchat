@@ -3,7 +3,7 @@ export default {
   async listOfMessage(id, offset) {
     return apiClient.get(`/msg/protected/channel/${id}/messages/${offset}`, {
       headers: {
-        authorization: "Bearer ",
+        authorization: "Bearer " + localStorage["token"],
       },
     });
   },
@@ -13,7 +13,7 @@ export default {
       `/msg/protected/channel/${id}/message`,
       {
         headers: {
-          authorization: "Bearer ",
+          authorization: "Bearer " + localStorage["token"],
         },
       },
       message
@@ -25,7 +25,7 @@ export default {
       "/msg/protected/channel/54/message/moderate",
       {
         headers: {
-          authorization: "Bearer ",
+          authorization: "Bearer " + localStorage["token"],
         },
       },
       message
