@@ -1,5 +1,8 @@
-import { reactive } from "vue";
-export default store = reactive({
+import { ref } from "vue";
+
+const store = ref({
   channels: [],
   messages: [],
 });
+
+export default store;

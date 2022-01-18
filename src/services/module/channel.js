@@ -1,4 +1,4 @@
-import apiClient from "../http-common";
+import apiClient from "../http-comon";
 export default {
   async listOfChannel() {
     return await apiClient.get(`/protected/user/channels`, {
