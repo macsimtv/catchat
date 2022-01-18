@@ -4,14 +4,14 @@
       <div v-if="state.loading">
         <ServerLoading v-for="n in 3"></ServerLoading>
       </div>
-      <div v-else>
+      <template v-else>
         <ServerIcon
           v-for="(channel, index) in state.channels"
           :key="channel.id"
           :channel="channel"
           :index="index"
         />
-      </div>
+      </template>
       <ServerAddIcon />
     </div>
   </section>
