@@ -31,6 +31,14 @@ export default {
       channel
     );
   },
+
+  async deleteChannel(idChannel) {
+    return apiClient.delete(`/msg/protected/channel/${idChannel}`, {
+      headers: {
+        authorization: "Bearer " + localStorage["token"],
+      },
+    });
+  },
   async banUserFromChannel(idChannel, username, channel) {
     return apiClient.delete(
       `/msg/protected/channel/${idChannel}/user/${username}'`,
@@ -40,6 +48,17 @@ export default {
         },
       },
       channel
+    );
+  },
+
+  async addUserInAChannel(idChannel, username) {
+    return apiClient.put(
+      `/msg/protected/channel/${idChannel}/user/${username}/`,
+      {
+        headers: {
+          authorization: "Bearer " + localStorage["token"],
+        },
+      }
     );
   },
 };
