@@ -4,7 +4,7 @@
       <router-link to="/">
         <img src="img/Logo_chat3.svg" class="logo" />
       </router-link>
-      <Dropdown title="Services" :items="services" @click="logout" />
+      <Dropdown title="Services" :items="services" />
     </div>
   </header>
 </template>
@@ -26,12 +26,6 @@ export default {
         },
       ],
     };
-  },
-  methods: {
-    logout() {
-      localStorageService.clear();
-      this.$router.push("/login");
-    },
   },
 };
 </script>

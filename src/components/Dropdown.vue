@@ -13,7 +13,7 @@
     <transition name="fade" appear>
       <div class="sub-menu" v-if="isOpen">
         <div v-for="(item, i) in items" :key="i" class="header__container">
-          <a :href="item.link">{{ item.title }}</a>
+          <a :href="item.link" @click="logout">{{ item.title }} </a>
         </div>
       </div>
     </transition>
@@ -28,6 +28,12 @@ export default {
     return {
       isOpen: false,
     };
+  },
+  methods: {
+    logout() {
+      localStorage.clear();
+      this.$router.push("/login");
+    },
   },
 };
 </script>

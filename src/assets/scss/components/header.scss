@@ -16,7 +16,6 @@
     width: 100%;
     display: flex ;
     justify-content: space-between ;
-    text-decoration: none;
 }
 
 .header_z{
@@ -47,7 +46,12 @@
     transform: translate(-10px, 60px);
     padding: 20px;
     background-color: $primary-color;
+    box-shadow:0px 5px 29px 15px rgba(0,0,0,0.27);
     & a{
         text-decoration: none;
+        color: $color;
+        font-family: $font;
+        font-size: 18px;
+        font-weight: bold;
     }
   }
