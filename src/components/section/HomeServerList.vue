@@ -1,7 +1,7 @@
 <template>
     <section class="home-server-list">
         <div class="home-server-list__container">
-            <ServerIcon v-for="(channel, index) in channels" :key="index" :channel="channel"/>
+            <ServerIcon v-for="(channel, index) in channels" :key="channel.id" :channel="channel" :index="index"/>
             <ServerAddIcon/>
         </div>
     </section>
