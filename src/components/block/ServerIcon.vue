@@ -26,26 +26,24 @@ defineProps({
 let isActive = ref(false);
 
 function toggleServerName(e, name) {
-  let serverName = document.querySelector('.server-name');
+  let serverName = document.querySelector(".server-name");
   serverName.innerHTML = name;
 
   let size = {
-      width: e.target.offsetWidth,
-      height: e.target.offsetHeight,
-  }
+    width: e.target.offsetWidth,
+    height: e.target.offsetHeight,
+  };
 
   let position = {
-      x: e.target.offsetLeft,
-      y: e.target.offsetTop
-  }
+    x: e.target.offsetLeft,
+    y: e.target.offsetTop,
+  };
 
   let offset = 15;
 
-  serverName.style.top = (position.y + ( size.height / 2)) + 'px';
-  serverName.style.left = (position.x + ( size.width + offset )) + 'px';
+  serverName.style.top = position.y + size.height / 2 + "px";
+  serverName.style.left = position.x + (size.width + offset) + "px";
 
-    console.log(position, size);
-
-  serverName.classList.toggle('active');
+  serverName.classList.toggle("active");
 }
 </script>
