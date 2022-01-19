@@ -2,7 +2,7 @@
     <div :class="{'home-chatbox__message': true, 'home-chatbox__message--me': (msg.author == username) }">
       <div :class="{'home-chatbox__title': true, 'home-chatbox__title--me': (msg.author == username) }">
         <div :class="{'home-chatbox__title-without-date': true, 'home-chatbox__title-without-date--me': (msg.author == username) }">
-          <div :class="{'home-chatbox__profil': true, 'home-chatbox__profil--me': (msg.author == username) }">RB</div>
+          <div :class="{'home-chatbox__profil': true, 'home-chatbox__profil--me': (msg.author == username) }">{{ msg.author.substring(0, 2).toUpperCase() }}</div>
           <div :class="{'home-chatbox__message-title': true, 'home-chatbox__message-title--me': (msg.author == username) }">{{msg.author}}</div>
         </div>
         <div class="home-chatbox__message-date" :class="{'home-chatbox__message-date': true, 'home-chatbox__message-date--me': (msg.author == username) }">
