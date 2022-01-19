@@ -32,7 +32,7 @@ async function login(){
             {{ error }}
           </p>
           <input type="text" class="login-page__input" v-model="username" placeholder="Pseudo" />
-          <input type="password" class="login-page__input" v-model="password" placeholder="Mot de passe" />
+          <input autocomplete type="password" class="login-page__input" v-model="password" placeholder="Mot de passe" />
           <button type="submit" @click.prevent="login" class="login-page__button">Connexion</button>
         </form>
       </div>
