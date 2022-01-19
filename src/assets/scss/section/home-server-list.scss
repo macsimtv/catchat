@@ -5,7 +5,7 @@
 
     border-radius: 15px;
 
-    overflow: hidden;
+    overflow-y: auto;
 
     &__container {
         height: 100%;
@@ -17,6 +17,36 @@
 
         padding: 15px;
 
-        overflow: hidden auto;
+        overflow-y: auto;
+    }
+}
+
+.server-name {
+    width: fit-content;
+
+    padding: 10px;
+
+    position: absolute;
+    z-index: 10;
+
+    color: $secondary-color;
+    background: $color;
+
+    border-radius: 10px;
+
+    opacity: 0;
+
+    white-space: nowrap;
+
+    transform: translate(0, -50%);
+
+    box-shadow:0px 5px 29px 5px rgba(0,0,0,0.27);
+
+    cursor: default;
+
+    transition: opacity 0.2s ease-out;
+
+    &.active {
+        opacity: 1;
     }
 }
