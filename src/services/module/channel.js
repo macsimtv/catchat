@@ -9,14 +9,14 @@ export default {
   },
 
   async createChannel(channel) {
-    return await apiClient.post(
+    return await apiClient.put(
       `/protected/channel`,
+      channel,
       {
         headers: {
           authorization: "Bearer " + localStorage["token"],
         },
       },
-      channel
     );
   },
 
