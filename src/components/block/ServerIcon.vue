@@ -1,7 +1,7 @@
 <template>
   <div
-    @mouseenter="toggleServerName($event, channel.name)"
-    @mouseleave="toggleServerName($event, channel.name)"
+    @mouseenter="addServerName($event, channel.name)"
+    @mouseleave="removeServerName"
     :data-channel-id="channel.id"
     class="server-icon"
   >
@@ -25,7 +25,7 @@ defineProps({
 
 let isActive = ref(false);
 
-function toggleServerName(e, name) {
+function addServerName(e, name) {
   let serverName = document.querySelector(".server-name");
   serverName.innerHTML = name;
 
@@ -44,6 +44,11 @@ function toggleServerName(e, name) {
   serverName.style.top = position.y + size.height / 2 + "px";
   serverName.style.left = position.x + (size.width + offset) + "px";
 
-  serverName.classList.toggle("active");
+  serverName.classList.add("active");
+}
+
+function removeServerName() {
+  let serverName = document.querySelector(".server-name");
+  serverName.classList.remove("active");
 }
 </script>
