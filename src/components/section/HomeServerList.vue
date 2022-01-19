@@ -12,8 +12,10 @@ import StoreRefresh from "../../store/actions";
 
 let isModalOpen = ref(false);
 
-const serverName = ref('');
-const serverImageUrl = ref('');
+const serverOptions = ref({
+  name: "",
+  img: "",
+});
 
 function onChangeServer(id) {
   const newCurrentChannel = state.channels.find((item) => item.id == id);
@@ -33,16 +35,13 @@ async function changeMessagesChannel() {
 }
 
 async function onCreateServer() {
-  const newChannel = await ServiceChannel.createChannel({
-    name: serverName.value,
-    img: serverImageUrl.value
-  });
-
+  const newChannel = await ServiceChannel.createChannel(serverOptions.value);
+  serverOptions.value.name = "";
+  serverOptions.value.img = "";
   StoreRefresh.channels();
 
   isModalOpen.value = !isModalOpen.value;
 }
-
 </script>
 
 <template>
@@ -66,13 +65,26 @@ async function onCreateServer() {
   <p class="server-name"></p>
   <teleport to="body">
     <transition name="fade"
-      ><div v-if="isModalOpen" class="modal" @submit.prevent="onCreateServer">
+      ><div
+        v-if="isModalOpen"
+        class="modal"
+        @submit.prevent="onCreateServer"
+        @keydown.esc="isModalOpen = !isModalOpen"
+      >
         <div class="modal__container">
           <div class="modal__body">
             <h2 class="modal__title">Créer un Serveur</h2>
             <form class="modal__form">
-              <input v-model="serverName" type="text" placeholder="Nom du serveur" />
-              <input v-model="serverImageUrl" type="url" placeholder="Adresse de l'image du serveur" />
+              <input
+                v-model="serverOptions.name"
+                type="text"
+                placeholder="Nom du serveur"
+              />
+              <input
+                v-model="serverOptions.img"
+                type="url"
+                placeholder="Adresse de l'image du serveur"
+              />
               <button type="submit">Créer le serveur</button>
             </form>
           </div>
