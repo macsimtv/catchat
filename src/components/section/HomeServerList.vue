@@ -33,4 +33,5 @@ function onChangeServer(id) {
       <ServerAddIcon />
     </div>
   </section>
+  <p class="server-name"></p>
 </template>
