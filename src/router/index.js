@@ -22,7 +22,7 @@ const router = createRouter({
 
 /* AUTH */
 router.beforeEach((to, from, next) => {
-    if (localStorage['token'] && localStorage['token'].length && !(new Date().getTime() - localStorage['token_date']) < (10800 * 1000) && to.name == 'Login') return router.push({ name: 'Home' })
+    //if (localStorage['token'] && localStorage['token'].length && !(new Date().getTime() - localStorage['token_date']) < (10800 * 1000) && to.name == 'Login') return router.push({ name: 'Home' })
 
     if (to.name == 'Login') return next();
 

@@ -14,12 +14,21 @@ const messages = [{
   {
     "channel_id": 54,
     "timestamp": 1641124598,
-    "author": "jsos10",
+    "author": "rbuisson",
     "content": {
       "Text": "Je suis un autre message",
       "Image": null
     }
-  }]
+  },
+  {
+    "channel_id": 54,
+    "timestamp": 1641124598,
+    "author": "rbuisson",
+    "content": {
+      "Text": "Je suis un autre messageJe suis un autre messageJe suis un autre messageJe suis un autre messageJe suis un autre messageJe suis un autre messageJe suis un autre message",
+      "Image": null
+    }
+  },]
 </script>
 
 <template>

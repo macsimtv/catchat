@@ -1,9 +1,7 @@
 .home-chatbox {
     flex: 1;
     height: 100%;
-
     background-color: $primary-color;
-
     border-radius: 15px;
 
     &__container {
@@ -12,26 +10,65 @@
 
         display: flex;
         flex-direction: column;
-
         gap: 25px;
     }
 
     &__message {
-        background-color: $color;
-        height: 60px;
-        width: 100%;
+        position: relative;
+        background-color: $secondary-color;
+        min-height: 50px;
+        min-width: 30%;
+        max-width: 80%;
         border-radius: 15px;
+        font-size: 12px;
+        align-self: flex-start;
+        &--me {
+            align-self: flex-end;
+            background-color: $color;
+        }
     }
 
     &__message-title {
         margin-top: 3px;
-        margin-left: 8px;
         font-size: 17px;
-        color: black;
+        color: $color;
+        &--me {
+            text-align: right;
+            color: black;
+        }
     }
 
     &__text {
         margin: 8px;
-        color: black;
+        color: $color;
+        &--me {
+            color: black;
+        }
+    }
+
+    &__profil {
+        position: relative;
+        left: 0;
+        transform: translateX(-50%);
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: $secondary-color;
+        &--me {
+            right: 0;
+            left: unset;
+            transform: translateX(50%);
+        }
+    }
+
+    &__title {
+        display: flex;
+        justify-content: flex-start;
+        &--me {
+            flex-direction: row-reverse;
+        }
     }
 }
