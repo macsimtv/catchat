@@ -13,7 +13,7 @@
     <transition name="fade" appear>
       <div class="sub-menu" v-if="isOpen">
         <div v-for="(item, i) in items" :key="i" class="header__container">
-          <p style="cursor: pointer" @click="logout">{{ item.title }} </p>
+          <p style="cursor: pointer" @click="logout">{{ item.title }}</p>
         </div>
       </div>
     </transition>

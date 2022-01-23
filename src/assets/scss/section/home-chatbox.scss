@@ -95,3 +95,44 @@
         }
     }
 }
+
+.form-controle{
+    position: absolute;
+    bottom: 40px;
+    width: 60%;
+    input{
+        background-color: $secondary-color;
+        min-height: 50px;
+        border-radius: 15px;
+        font-size: 14px;
+        padding: 10px;
+        width: 100%;
+        border: none;
+    }
+    button{
+        background-color: $primary-color;
+        border: none;   
+        position: absolute; 
+        right: 16px;
+        top: 5px;
+        padding: 7px 13px;
+        border-radius: 10px;
+    }
+    .vue3-emojipicker{
+        background-color: $primary-color;
+        border: none;   
+        position: absolute !important; 
+        top: 5px;
+        border-radius: 10px;
+        right: 70px;
+        margin-left: 0px ;
+        padding: 8px 14px;
+
+        div.mt-4{
+            margin-top: 0px !important;
+        }
+        .vue3-discord-emojipicker__emojibutton{
+            margin-left: 0px !important;
+        }
+    }
+}
