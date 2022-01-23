@@ -1,6 +1,9 @@
 <script setup>
 import Message from "../block/Message.vue";
+import { ref } from "vue";
+import Vue from "vue";
 
+// const message=ref('');
 const messages = [
   {
     channel_id: 54,
@@ -67,9 +70,19 @@ const send = async () => {
   <section class="home-chatbox">
     <div class="home-chatbox__container">
       <Message v-for="(msg, index) in messages" :msg="msg" :key="index" />
-      <form>
+      <form @submit.prevent="send">
         <div class="form-controle">
           <input placeholder="Aa" v-model="message" />
+          <button @click="send">
+            <img src="img/send.png" />
+          </button>
+          <discord-picker
+            :value="value"
+            gif-format="md"
+            @update:value="value = $event"
+            @emoji="setEmoji"
+            @gif="setGif"
+          />
         </div>
       </form>
     </div>

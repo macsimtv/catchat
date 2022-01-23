@@ -107,5 +107,24 @@
         font-size: 14px;
         padding: 10px;
         width: 100%;
+        border: none;
+    }
+    button{
+        background-color: $primary-color;
+        border: none;   
+        position: absolute; 
+        right: 16px;
+        top: 10px;
+        padding: 4px 8px;
+        border-radius: 10px;
+    }
+    .vue3-emojipicker{
+        background-color: $primary-color;
+        border: none;   
+        position: absolute !important; 
+        top: 5px;
+        border-radius: 10px;
+        right: 70px;
+        margin-left: 0px ;
     }
 }
