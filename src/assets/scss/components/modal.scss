@@ -26,6 +26,13 @@
     z-index: 10;
   }
 
+  &__body-bis {
+    width: 90%;
+    max-width: 900px;
+
+    position: relative;
+    z-index: 10;
+  }
   &__title {
     margin-bottom: 25px;
 
@@ -89,4 +96,3 @@
 .fade-leave-to {
   opacity: 0;
 }
-
