@@ -114,8 +114,8 @@
         border: none;   
         position: absolute; 
         right: 16px;
-        top: 10px;
-        padding: 4px 8px;
+        top: 5px;
+        padding: 7px 13px;
         border-radius: 10px;
     }
     .vue3-emojipicker{
@@ -126,5 +126,13 @@
         border-radius: 10px;
         right: 70px;
         margin-left: 0px ;
+        padding: 8px 14px;
+
+        div.mt-4{
+            margin-top: 0px !important;
+        }
+        .vue3-discord-emojipicker__emojibutton{
+            margin-left: 0px !important;
+        }
     }
 }

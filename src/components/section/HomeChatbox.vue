@@ -1,7 +1,15 @@
 <script setup>
 import Message from "../block/Message.vue";
 import { ref } from "vue";
-import Vue from "vue";
+import DiscordPicker from "vue3-discordpicker";
+
+function setEmoji(emoji) {
+  console.log(emoji);
+}
+
+function setGif(gif) {
+  console.log(gif);
+}
 
 // const message=ref('');
 const messages = [
