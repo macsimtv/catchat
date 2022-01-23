@@ -1,7 +1,7 @@
 import apiClient from "../http-comon";
 export default {
   async listOfMessage(id, offset) {
-    return apiClient.get(`/protected/channel/${id}/messages/${offset}`, {
+    return await apiClient.get(`/protected/channel/${id}/messages/${offset}`, {
       headers: {
         authorization: "Bearer " + localStorage["token"],
       },
@@ -9,7 +9,7 @@ export default {
   },
 
   async sendMessage(id, message) {
-    return apiClient.post(
+    return await apiClient.post(
       `/protected/channel/${id}/message`,
       {
         headers: {
@@ -21,7 +21,7 @@ export default {
   },
 
   async moderateMessage(message) {
-    return apiClient.post(
+    return await apiClient.post(
       "/protected/channel/54/message/moderate",
       {
         headers: {
