@@ -98,6 +98,7 @@ const serv = ref({
   img: state.currentChannel.img,
   theme: null,
 });
+
 const userSearch = ref("");
 const windw = ref("edit");
 const users = ref([]);
@@ -124,6 +125,10 @@ async function deleteServ() {
 
 async function banUser(user) {
   await ServiceChannel.banUserFromChannel(state.currentChannel.id, user);
+  let userList = state.currentChannel.users;
+  userList = userList.filter((u) => u !== user);
+  console.log(userList);
   StoreRefresh.channels();
+  emits("close");
 }
 </script>
