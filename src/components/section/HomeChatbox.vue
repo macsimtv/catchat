@@ -1,10 +1,10 @@
 <script setup>
 import Message from "../block/Message.vue";
 import { ref, inject } from "vue";
-const {state, setStateProp} = inject("state")
+const { state, setStateProp } = inject("state");
 import DiscordPicker from "vue3-discordpicker";
+import MessagesService from "../../services/module/messages";
 import ServerBar from "../block/ServerBar.vue";
-import msg from '../../services/module/messages'
 
 function setEmoji(emoji) {
   console.log(emoji);
@@ -14,9 +14,8 @@ function setGif(gif) {
   console.log(gif);
 }
 
-const textInput = ref("")
+const textInput = ref("");
 
-// const message=ref('');
 const messages = [
   {
     channel_id: 54,
@@ -66,36 +65,36 @@ const messages = [
 ];
 
 const send = async () => {
- const isMessageSend = await msg.sendMessage(state.currentChannel.id, {Text: textInput.value})
+ const isMessageSend = await MessagesService.sendMessage(state.currentChannel.id, {Text: textInput.value})
   if (isMessageSend){
     textInput.value = ""
   }else{
     alert('le message ne s\'est pas envoyer')
   }
-
 };
+
 </script>
 
 <template>
   <section class="home-chatbox">
     <ServerBar/>
     <div class="home-chatbox__container">
-      <Message v-for="(msg, index) in messages" :msg="msg" :key="index" />
+      <Message v-for="(msg, index) in state.messages" :msg="msg" :key="index" />
     </div>
     <form @submit.prevent="send">
-        <div class="form-controle">
-          <input placeholder="Aa" v-model="textInput" />
-          <button type="submit">
-            <img src="img/send.png" />
-          </button>
-          <discord-picker
-            :value="textInput"
-            gif-format="md"
-            @update:value="value = $event"
-            @emoji="setEmoji"
-            @gif="setGif"
-          />
-        </div>
-      </form>
+      <div class="form-controle">
+        <input placeholder="Aa" v-model="textInput" />
+        <button type="submit">
+          <img src="img/send.png" />
+        </button>
+        <discord-picker
+          :value="textInput"
+          gif-format="md"
+          @update:value="value = $event"
+          @emoji="setEmoji"
+          @gif="setGif"
+        />
+      </div>
+    </form>
   </section>
 </template>

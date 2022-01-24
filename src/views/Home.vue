@@ -18,7 +18,7 @@ onMounted(async () => {
   setStateProp("channels", dataChannels.data);
   setStateProp("currentChannel", dataChannels.data[0]);
   // Messages
-  let dataMessages = await ServiceMessages.listOfMessage(state.currentChannel.id, 40);
+  let dataMessages = await ServiceMessages.getAll(state.currentChannel.id, 0);
   setStateProp("messages", dataMessages.data);
 
   // End Loading
