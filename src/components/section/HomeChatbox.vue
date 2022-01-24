@@ -13,20 +13,25 @@ defineProps({
 });
 
 function setEmoji(emoji) {
-  console.log(emoji);
+  textInput.value += emoji;
 }
 
 function setGif(gif) {
-  textInput.value += gif;
-  console.log(gif);
+  gif = gif.substring(7);
+  gif = gif.substring(0, gif.length - 1);
+  send(false, gif);
 }
 
 const textInput = ref("");
 
-const send = async (e) => {
+const send = async (e, imageLink) => {
+  let data = { Text: textInput.value };
+  if (imageLink) {
+    data = { Image: imageLink };
+  }
   const isMessageSend = await MessagesService.sendMessage(
     state.currentChannel.id,
-    { Text: textInput.value }
+    data
   );
   if (isMessageSend) {
     textInput.value = "";
@@ -51,7 +56,15 @@ const onScrollBottom = () => {
   <section class="home-chatbox">
     <ServerBar />
     <div class="home-chatbox__container">
-      <Message v-for="(msg, index) in state.messages" :msg="msg" :key="index" />
+      <Message
+        v-show="state.messages.length"
+        v-for="(msg, index) in state.messages"
+        :msg="msg"
+        :key="index"
+      />
+      <p style="text-align: center" v-show="!state.messages.length">
+        Il n'y a aucun message sur ce channel
+      </p>
     </div>
     <form @submit.prevent="send">
       <div class="form-controle">
@@ -60,16 +73,11 @@ const onScrollBottom = () => {
           <img src="img/send.png" />
         </button>
         <discord-picker
-          :value="textInput"
           @update:value="value = $event"
           @emoji="setEmoji"
-        />
-        <discord-picker
-          apiKey="34DXVAVB20QR"
-          :value="textInput"
-          gif-format="md"
-          @update:value="value = $event"
           @gif="setGif"
+          gif-format="md"
+          apiKey="34DXVAVB20QR"
         />
       </div>
     </form>
