@@ -56,7 +56,15 @@ const onScrollBottom = () => {
   <section class="home-chatbox">
     <ServerBar />
     <div class="home-chatbox__container">
-      <Message v-for="(msg, index) in state.messages" :msg="msg" :key="index" />
+      <Message
+        v-show="state.messages.length"
+        v-for="(msg, index) in state.messages"
+        :msg="msg"
+        :key="index"
+      />
+      <p style="text-align: center" v-show="!state.messages.length">
+        Il n'y a aucun message sur ce channel
+      </p>
     </div>
     <form @submit.prevent="send">
       <div class="form-controle">

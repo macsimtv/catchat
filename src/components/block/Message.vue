@@ -69,7 +69,7 @@ defineProps({
 
 const localeFunc = (number, index, totalSec) => {
   return [
-    ["à l'instant", "dans un instant"],
+    ["à l'instant", "à l'instant"],
     ["%s secondes", "dans %s secondes"],
     ["1 minute", "dans 1 minute"],
     ["%s minutes", "dans %s minutes"],
