@@ -13,19 +13,33 @@ defineProps({
 });
 
 function setEmoji(emoji) {
+<<<<<<< HEAD
   textInput.value += emoji;
 }
 
 function setGif(gif) {
   textInput.value += gif;
+=======
+  textInput.value += emoji
+}
+
+function setGif(gif) {
+  gif = gif.substring(7)
+  gif = gif.substring(0, gif.length - 1)
+  send(false, gif)
+>>>>>>> a0ed4ce4c107831f0e26a739f4bb1e800c12e0e6
 }
 
 const textInput = ref("");
 
-const send = async (e) => {
+const send = async (e, imageLink) => {
+  let data = { Text: textInput.value }
+  if (imageLink){
+    data = {Image: imageLink}
+  }
   const isMessageSend = await MessagesService.sendMessage(
     state.currentChannel.id,
-    { Text: textInput.value }
+    data
   );
   if (isMessageSend) {
     textInput.value = "";
@@ -59,6 +73,7 @@ const onScrollBottom = () => {
           <img src="img/send.png" />
         </button>
         <discord-picker
+<<<<<<< HEAD
           :value="textInput"
           apiKey="34DXVAVB20QR"
           @update:value="value = $event"
@@ -73,6 +88,14 @@ const onScrollBottom = () => {
           @update:value="value = $event"
           @gif="setGif"
         /> -->
+=======
+          @update:value="value = $event"
+          @emoji="setEmoji"
+          @gif="setGif"
+          gif-format="md"
+          apiKey="34DXVAVB20QR"
+        />
+>>>>>>> a0ed4ce4c107831f0e26a739f4bb1e800c12e0e6
       </div>
     </form>
   </section>

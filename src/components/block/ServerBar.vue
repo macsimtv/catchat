@@ -1,18 +1,45 @@
 <script setup>
-import { ref } from "vue";
+import { ref, inject } from "vue";
+
+const { state, setStateProp } = inject("state");
+
 import ModalParamsServer from "./ModalParamsServer.vue";
 let isOpen = ref(false);
 function closeModal() {
   isOpen.value = !isOpen.value;
+}
+
+function isOwner() {
+  if (localStorage["username"] == state.currentChannel.creator) return true;
+  return false;
 }
 </script>
 
 <template>
   <div class="server-bar">
     <div class="server-bar__container">
-      <h2 class="server-bar__title">Nom du server</h2>
-      <div class="server-bar__menu">
-        <button class="server-bar__settings" @click="isOpen = !isOpen">
+      <h2 class="server-bar__title">{{ state.currentChannel.name }}</h2>
+      <div v-if="isOwner()" class="server-bar__menu">
+        <button class="server-bar__invite server-bar__button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+            />
+          </svg>
+        </button>
+        <button
+          class="server-bar__settings server-bar__button"
+          @click="isOpen = !isOpen"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-6 w-6"

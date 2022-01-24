@@ -41,17 +41,21 @@
           'home-chatbox__message-date--me': msg.author == username,
         }"
       >
-        {{ format(msg.timestamp * 1000, "fr") }}
+        {{ format(msg.timestamp, "fr") }}
       </div>
     </div>
 
     <div
+    v-if="!msg.content.Image"
       :class="{
         'home-chatbox__text': true,
         'home-chatbox__text--me': msg.author == username,
       }"
     >
       {{ msg.content.Text }}
+    </div>
+    <div v-else>
+      <img :src="msg.content.Image" alt="">
     </div>
   </div>
 </template>

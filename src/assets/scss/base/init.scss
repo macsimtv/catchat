@@ -11,19 +11,26 @@
   font-family: $font;
 }
 
-/* width */
+/* total width */
 ::-webkit-scrollbar {
-  width: 4px;
+  background-color: transparent;
+  width: 3px;
 }
 
-/* Track */
+/* background of the scrollbar except button or resizer */
 ::-webkit-scrollbar-track {
-  background: $primary-color;
+  background-color: transparent;
 }
 
-/* Handle */
+/* scrollbar itself */
 ::-webkit-scrollbar-thumb {
-  background: $color;
+  background-color: #babac0;
+  border-radius: 999px;
+}
+
+/* set button(top and bottom of the scrollbar) */
+::-webkit-scrollbar-button {
+  display:none;
 }
 
 html {
