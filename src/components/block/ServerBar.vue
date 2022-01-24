@@ -4,7 +4,11 @@ import { ref, inject } from "vue";
 const { state, setStateProp } = inject("state");
 
 import ModalParamsServer from "./ModalParamsServer.vue";
-let isOpen = ref(false);
+import ModalInvite from "./ModalInvite.vue";
+
+const isOpen = ref(false);
+const isModalInviteOpen = ref(false);
+
 function closeModal() {
   isOpen.value = !isOpen.value;
 }
@@ -13,6 +17,14 @@ function isOwner() {
   if (localStorage["username"] == state.currentChannel.creator) return true;
   return false;
 }
+
+function onCloseModalInvite() {
+  isModalInviteOpen.value = !isModalInviteOpen.value;
+}
+
+function onOpenModalInvite() {
+  isModalInviteOpen.value = !isModalInviteOpen.value;
+}
 </script>
 
 <template>
@@ -20,7 +32,7 @@ function isOwner() {
     <div class="server-bar__container">
       <h2 class="server-bar__title">{{ state.currentChannel.name }}</h2>
       <div v-if="isOwner()" class="server-bar__menu">
-        <button class="server-bar__invite server-bar__button">
+        <button class="server-bar__invite server-bar__button" @click="onOpenModalInvite()">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-6 w-6"
@@ -69,4 +81,5 @@ function isOwner() {
       </div>
     </div>
   </div>
+  <ModalInvite :isOpen="isModalInviteOpen" @onCloseModalInvite="onCloseModalInvite" />
 </template>
