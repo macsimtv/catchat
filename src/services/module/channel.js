@@ -37,7 +37,7 @@ export default {
   },
   async banUserFromChannel(idChannel, username) {
     return await apiClient.delete(
-      `/msg/protected/channel/${idChannel}/user/${username}'`,
+      `/protected/channel/${idChannel}/user/${username}`,
       {
         headers: {
           authorization: "Bearer " + localStorage["token"],
@@ -48,7 +48,8 @@ export default {
 
   async addUserInAChannel(idChannel, username) {
     return await apiClient.put(
-      `/protected/channel/${idChannel}/user/${username}`, {},
+      `/protected/channel/${idChannel}/user/${username}`,
+      {},
       {
         headers: {
           authorization: "Bearer " + localStorage["token"],
