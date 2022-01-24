@@ -82,6 +82,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        border: 1px solid $color;
         border-radius: 50%;
         background-color: $secondary-color;
         &--me {
