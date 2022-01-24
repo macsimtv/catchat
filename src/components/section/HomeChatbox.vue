@@ -13,21 +13,21 @@ defineProps({
 });
 
 function setEmoji(emoji) {
-  textInput.value += emoji
+  textInput.value += emoji;
 }
 
 function setGif(gif) {
-  gif = gif.substring(7)
-  gif = gif.substring(0, gif.length - 1)
-  send(false, gif)
+  gif = gif.substring(7);
+  gif = gif.substring(0, gif.length - 1);
+  send(false, gif);
 }
 
 const textInput = ref("");
 
 const send = async (e, imageLink) => {
-  let data = { Text: textInput.value }
-  if (imageLink){
-    data = {Image: imageLink}
+  let data = { Text: textInput.value };
+  if (imageLink) {
+    data = { Image: imageLink };
   }
   const isMessageSend = await MessagesService.sendMessage(
     state.currentChannel.id,
@@ -56,7 +56,15 @@ const onScrollBottom = () => {
   <section class="home-chatbox">
     <ServerBar />
     <div class="home-chatbox__container">
-      <Message v-for="(msg, index) in state.messages" :msg="msg" :key="index" />
+      <Message
+        v-show="state.messages.length"
+        v-for="(msg, index) in state.messages"
+        :msg="msg"
+        :key="index"
+      />
+      <p style="text-align: center" v-show="!state.messages.length">
+        Il n'y a aucun message sur ce channel
+      </p>
     </div>
     <form @submit.prevent="send">
       <div class="form-controle">
