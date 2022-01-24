@@ -6,6 +6,32 @@ import DiscordPicker from "vue3-discordpicker";
 import MessagesService from "../../services/module/messages";
 import ServerBar from "../block/ServerBar.vue";
 
+defineProps({
+  value: [String, Number],
+  gifFormat: String,
+  key: String,
+});
+
+// defineProps: {
+// input: {
+//   type: Boolean,
+//   default: Boolean,
+// },
+// // input value
+// value: {
+//   type: [String, Number],
+//   default: null,
+// },
+// // return gif link with markdown format or html format
+// gifFormat: {
+//   type: String
+// },
+// // tenor.com API KEY
+// key: {
+//   type: String
+// }
+// }
+
 function setEmoji(emoji) {
   console.log(emoji);
 }
@@ -17,19 +43,21 @@ function setGif(gif) {
 const textInput = ref("");
 
 const send = async () => {
- const isMessageSend = await MessagesService.sendMessage(state.currentChannel.id, {Text: textInput.value})
-  if (isMessageSend){
-    textInput.value = ""
-  }else{
-    alert('le message ne s\'est pas envoyer')
+  const isMessageSend = await MessagesService.sendMessage(
+    state.currentChannel.id,
+    { Text: textInput.value }
+  );
+  if (isMessageSend) {
+    textInput.value = "";
+  } else {
+    alert("le message ne s'est pas envoyer");
   }
 };
-
 </script>
 
 <template>
   <section class="home-chatbox">
-    <ServerBar/>
+    <ServerBar />
     <div class="home-chatbox__container">
       <Message v-for="(msg, index) in state.messages" :msg="msg" :key="index" />
     </div>
@@ -41,9 +69,15 @@ const send = async () => {
         </button>
         <discord-picker
           :value="textInput"
-          gif-format="md"
           @update:value="value = $event"
           @emoji="setEmoji"
+        />
+        <discord-picker
+          apiKey="34DXVAVB20QR"
+          showEmoji="false"
+          :value="textInput"
+          gif-format="md"
+          @update:value="value = $event"
           @gif="setGif"
         />
       </div>
