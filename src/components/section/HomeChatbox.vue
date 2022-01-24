@@ -1,7 +1,9 @@
 <script setup>
 import Message from "../block/Message.vue";
-import { ref } from "vue";
+import { ref, inject } from "vue";
+const { state, setStateProps } = inject("state");
 import DiscordPicker from "vue3-discordpicker";
+import msg from "../../services/module/messages";
 
 function setEmoji(emoji) {
   console.log(emoji);
@@ -11,7 +13,7 @@ function setGif(gif) {
   console.log(gif);
 }
 
-// const message=ref('');
+const message = ref("");
 const messages = [
   {
     channel_id: 54,
@@ -61,16 +63,14 @@ const messages = [
 ];
 
 const send = async () => {
-  await fetch("https://edu.tardigrade.land/msg", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      username: username.value,
-      message: message.value,
-    }),
+  const isMessageSend = await msg.sendMessage(state.currentChannel.id, {
+    Text: textInput.value,
   });
-
-  message.value = "";
+  if (isMessageSend) {
+    textInput.value = "";
+  } else {
+    alert("le message ne s'est pas envoyé");
+  }
 };
 </script>
 
