@@ -16,20 +16,34 @@ function setGif(gif) {
 
 const textInput = ref("");
 
-const send = async () => {
- const isMessageSend = await MessagesService.sendMessage(state.currentChannel.id, {Text: textInput.value})
-  if (isMessageSend){
-    textInput.value = ""
-  }else{
-    alert('le message ne s\'est pas envoyer')
+const send = async (e) => {
+  const isMessageSend = await MessagesService.sendMessage(
+    state.currentChannel.id,
+    { Text: textInput.value }
+  );
+  if (isMessageSend) {
+    textInput.value = "";
+  } else {
+    alert("le message ne s'est pas envoyer");
   }
+
+  onScrollBottom();
 };
+
+onUpdated(() => {
+  onScrollBottom();
+})
+
+const onScrollBottom = () => {
+  let messageContainer = document.querySelector(".home-chatbox__container");
+  messageContainer.scrollTop = messageContainer.scrollHeight;
+}
 
 </script>
 
 <template>
   <section class="home-chatbox">
-    <ServerBar/>
+    <ServerBar />
     <div class="home-chatbox__container">
       <Message v-for="(msg, index) in state.messages" :msg="msg" :key="index" />
     </div>

@@ -10,7 +10,7 @@
             </div>
 
             <div v-if="windw == 'edit'">
-              <form class="modal__form">
+              <form class="modal__form" @submit.prevent="updateServ">
                 <input
                   v-model="serv.name"
                   type="text"
@@ -21,7 +21,7 @@
                   type="url"
                   placeholder="Adresse de l'image du serveur"
                 />
-                <button type="submit">Créer le serveur</button>
+                <button type="submit">Mettre a jour le serveur</button>
               </form>
             </div>
             <div v-else="windw == 'user'"></div>
@@ -39,10 +39,9 @@ import StoreRefresh from "../../store/actions";
 
 const { state, setStateProp } = inject("state");
 const serv = ref({
-  id: state.currentChannel.id,
   name: state.currentChannel.name,
   img: state.currentChannel.img,
-  theme: {},
+  theme: null,
 });
 const windw = "edit";
 const users = ref([]);
@@ -50,13 +49,18 @@ users.value = state.currentChannel.users;
 const emits = defineEmits(["close"]);
 
 async function updateServ() {
-  await ServiceChannel.updateMetaChannel(serv.value);
+  console.log({ ...serv.value });
+  await ServiceChannel.updateMetaChannel(state.currentChannel.id, {
+    ...serv.value,
+  });
   StoreRefresh.channels();
+  emits("close");
 }
 
 async function deleteServ() {
   await ServiceChannel.deleteChannel(serv.value.id);
   StoreRefresh.channels();
+  emits("close");
 }
 
 async function banUser() {
