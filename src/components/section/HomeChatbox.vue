@@ -4,6 +4,7 @@ import { ref, inject } from "vue";
 const {state, setStateProp} = inject("state")
 import DiscordPicker from "vue3-discordpicker";
 import MessagesService from "../../services/module/messages";
+import ServerBar from "../block/ServerBar.vue";
 
 function setEmoji(emoji) {
   console.log(emoji);
@@ -77,6 +78,7 @@ const send = async () => {
 
 <template>
   <section class="home-chatbox">
+    <ServerBar/>
     <div class="home-chatbox__container">
       <Message v-for="(msg, index) in state.messages" :msg="msg" :key="index" />
     </div>

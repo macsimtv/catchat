@@ -53,4 +53,14 @@ function updateServ() {
   await ServiceChannel.updateMetaChannel(serv.value);
   StoreRefresh.channels();
 }
+
+function deleteServ() {
+  await ServiceChannel.deleteChannel(serv.value.id);
+  StoreRefresh.channels();
+}
+
+function banUser() {
+  await ServiceChannel.banUserFromChannel(serv.value.id);
+  StoreRefresh.channels();
+}
 </script>

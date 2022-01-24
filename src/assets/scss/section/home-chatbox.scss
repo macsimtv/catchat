@@ -149,3 +149,14 @@
         }
     }
 }
+
+.server-bar {
+    &__container {
+        display: flex;
+        align-items: flex-end;
+    }
+
+    svg {
+        width: 24px;
+    }
+}
