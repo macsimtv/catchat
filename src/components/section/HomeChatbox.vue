@@ -3,12 +3,8 @@ import Message from "../block/Message.vue";
 import { ref, inject } from "vue";
 const { state, setStateProp } = inject("state");
 import DiscordPicker from "vue3-discordpicker";
-<<<<<<< HEAD
-import msg from "../../services/module/messages";
-=======
 import MessagesService from "../../services/module/messages";
 import ServerBar from "../block/ServerBar.vue";
->>>>>>> dd68b7e122d0602e4eef6793112b7a6a2a35113e
 
 function setEmoji(emoji) {
   console.log(emoji);
@@ -69,21 +65,11 @@ const messages = [
 ];
 
 const send = async () => {
-<<<<<<< HEAD
-  const isMessageSend = await msg.sendMessage(state.currentChannel.id, {
-    Text: textInput.value,
-  });
-  if (isMessageSend) {
-    textInput.value = "";
-  } else {
-    alert("le message ne s'est pas envoyer");
-=======
  const isMessageSend = await MessagesService.sendMessage(state.currentChannel.id, {Text: textInput.value})
   if (isMessageSend){
     textInput.value = ""
   }else{
     alert('le message ne s\'est pas envoyer')
->>>>>>> dd68b7e122d0602e4eef6793112b7a6a2a35113e
   }
 };
 
