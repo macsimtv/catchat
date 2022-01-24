@@ -9,14 +9,15 @@ export default {
   },
 
   async sendMessage(id, message) {
+    console.log(message)
     return await apiClient.post(
       `/protected/channel/${id}/message`,
+      message,
       {
         headers: {
           authorization: "Bearer " + localStorage["token"],
         },
-      },
-      message
+      }
     );
   },
 
