@@ -8,16 +8,19 @@ let isOpen = ref(false);
 function closeModal() {
   isOpen.value = !isOpen.value;
 }
+
+function isOwner() {
+  if (localStorage["username"] == state.currentChannel.creator) return true;
+  return false;
+}
 </script>
 
 <template>
   <div class="server-bar">
     <div class="server-bar__container">
       <h2 class="server-bar__title">{{ state.currentChannel.name }}</h2>
-      <div class="server-bar__menu">
-          <button
-          class="server-bar__invite server-bar__button"
-        >
+      <div v-if="isOwner()" class="server-bar__menu">
+        <button class="server-bar__invite server-bar__button">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-6 w-6"
@@ -58,7 +61,6 @@ function closeModal() {
             />
           </svg>
         </button>
-        
 
         <ModalParamsServer
           v-if="isOpen"
