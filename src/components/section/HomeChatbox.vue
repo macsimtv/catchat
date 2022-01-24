@@ -12,31 +12,12 @@ defineProps({
   key: String,
 });
 
-// defineProps: {
-// input: {
-//   type: Boolean,
-//   default: Boolean,
-// },
-// // input value
-// value: {
-//   type: [String, Number],
-//   default: null,
-// },
-// // return gif link with markdown format or html format
-// gifFormat: {
-//   type: String
-// },
-// // tenor.com API KEY
-// key: {
-//   type: String
-// }
-// }
-
 function setEmoji(emoji) {
   console.log(emoji);
 }
 
 function setGif(gif) {
+  textInput.value += gif;
   console.log(gif);
 }
 
@@ -85,7 +66,6 @@ const onScrollBottom = () => {
         />
         <discord-picker
           apiKey="34DXVAVB20QR"
-          showEmoji="false"
           :value="textInput"
           gif-format="md"
           @update:value="value = $event"
