@@ -107,7 +107,6 @@ const filteredUser = computed(() => {
 });
 
 async function updateServ() {
-  console.log({ ...serv.value });
   await ServiceChannel.updateMetaChannel(state.currentChannel.id, {
     ...serv.value,
   });
