@@ -16,54 +16,6 @@ function setGif(gif) {
 
 const textInput = ref("");
 
-const messages = [
-  {
-    channel_id: 54,
-    timestamp: 1641124598,
-    author: "jsos10",
-    content: {
-      Text: "Je suis un message",
-      Image: null,
-    },
-  },
-  {
-    channel_id: 13,
-    timestamp: 1641124598,
-    author: "mlecouturier",
-    content: {
-      Text: "Ceci est un message test",
-      Image: null,
-    },
-  },
-  {
-    channel_id: 54,
-    timestamp: 1641124598,
-    author: "rbuisson",
-    content: {
-      Text: "Je suis un autre message",
-      Image: null,
-    },
-  },
-  {
-    channel_id: 54,
-    timestamp: 1641124598,
-    author: "rbuisson",
-    content: {
-      Text: "Je suis un autre messageJe suis un autre messageJe suis un autre messageJe suis un autre messageJe suis un autre messageJe suis un autre messageJe suis un autre message",
-      Image: null,
-    },
-  },
-  {
-    channel_id: 13,
-    timestamp: 1641124598,
-    author: "mlecouturier",
-    content: {
-      Text: "Yo comment tu vas ?",
-      Image: null,
-    },
-  },
-];
-
 const send = async () => {
  const isMessageSend = await MessagesService.sendMessage(state.currentChannel.id, {Text: textInput.value})
   if (isMessageSend){
