@@ -1,6 +1,6 @@
 <script setup>
 import Message from "../block/Message.vue";
-import { ref, inject } from "vue";
+import { ref, inject, onUpdated } from "vue";
 const { state, setStateProp } = inject("state");
 import DiscordPicker from "vue3-discordpicker";
 import MessagesService from "../../services/module/messages";
@@ -42,7 +42,11 @@ function setGif(gif) {
 
 const textInput = ref("");
 
+<<<<<<< HEAD
 const send = async () => {
+=======
+const send = async (e) => {
+>>>>>>> 201f3d0c8f6674f21ecd645d227209516f9b6773
   const isMessageSend = await MessagesService.sendMessage(
     state.currentChannel.id,
     { Text: textInput.value }
@@ -52,7 +56,22 @@ const send = async () => {
   } else {
     alert("le message ne s'est pas envoyer");
   }
+
+  onScrollBottom();
 };
+<<<<<<< HEAD
+=======
+
+onUpdated(() => {
+  onScrollBottom();
+})
+
+const onScrollBottom = () => {
+  let messageContainer = document.querySelector(".home-chatbox__container");
+  messageContainer.scrollTop = messageContainer.scrollHeight;
+}
+
+>>>>>>> 201f3d0c8f6674f21ecd645d227209516f9b6773
 </script>
 
 <template>
