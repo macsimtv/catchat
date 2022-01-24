@@ -26,30 +26,55 @@
               </form>
             </div>
             <div class="modal__server-section" v-else="windw == 'user'">
-              <form class="modal__form">
-                <input
-                  class="search"
-                  v-model="userSearch"
-                  type="text"
-                  placeholder="Nom d'un utilisateur"
-                />
-                <button class="search" type="submit">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    />
-                  </svg>
-                </button>
+              <form class="modal__form" @submit.prevent="">
+                <div>
+                  <input
+                    class="search"
+                    v-model="userSearch"
+                    type="text"
+                    placeholder="Nom d'un utilisateur"
+                  />
+                  <button class="search" type="submit">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      />
+                    </svg>
+                  </button>
+                </div>
               </form>
+
+              <ul class="modal__server-list">
+                <li class="modal__server-user" v-for="user in filteredUser">
+                  {{ user }}
+
+                  <button class="delete">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                  </button>
+                </li>
+              </ul>
             </div>
           </div>
           <div @click="$emit('close')" class="modal__background"></div>
@@ -59,7 +84,7 @@
 </template>
 
 <script setup>
-import { inject, ref } from "vue";
+import { inject, ref, computed } from "vue";
 import ServiceChannel from "../../services/module/channel";
 import StoreRefresh from "../../store/actions";
 
@@ -74,6 +99,10 @@ const windw = ref("edit");
 const users = ref([]);
 users.value = state.currentChannel.users;
 const emits = defineEmits(["close"]);
+
+const filteredUser = computed(() => {
+  return users.value.filter((u) => u.match(userSearch.value));
+});
 
 async function updateServ() {
   console.log({ ...serv.value });

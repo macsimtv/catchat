@@ -93,7 +93,7 @@
         position: absolute;
         border-radius: 4rem;
         width: fit-content;
-        top: 48%;
+
         right: 9%;
       }
     }
@@ -136,6 +136,14 @@
     padding: 0.1rem;
     border-radius: 20px;
     overflow: hidden;
+  }
+
+  &__server-user {
+    filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07))
+      drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
+    padding: 0.8rem;
+    border-radius: 20px;
+    color: #968d8d;
   }
 }
 
