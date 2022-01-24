@@ -58,7 +58,7 @@
                 <li class="modal__server-user" v-for="user in filteredUser">
                   {{ user }}
 
-                  <button class="delete">
+                  <button class="delete" @click="banUser(user)">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       class="h-6 w-6"
@@ -120,8 +120,8 @@ async function deleteServ() {
   emits("close");
 }
 
-async function banUser() {
-  await ServiceChannel.banUserFromChannel(serv.value.id, users.value[0]);
+async function banUser(user) {
+  await ServiceChannel.banUserFromChannel(state.currentChannel.id, user);
   StoreRefresh.channels();
 }
 </script>
