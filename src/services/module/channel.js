@@ -17,14 +17,14 @@ export default {
   },
 
   async updateMetaChannel(id, channel) {
-    return await apiClient.get(
+    return await apiClient.post(
       `/protected/channel/${id}/update_metadata`,
+      channel,
       {
         headers: {
           authorization: "Bearer " + localStorage["token"],
         },
-      },
-      channel
+      }
     );
   },
 
