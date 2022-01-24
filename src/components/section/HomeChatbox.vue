@@ -13,13 +13,6 @@ defineProps({
 });
 
 function setEmoji(emoji) {
-<<<<<<< HEAD
-  textInput.value += emoji;
-}
-
-function setGif(gif) {
-  textInput.value += gif;
-=======
   textInput.value += emoji
 }
 
@@ -27,7 +20,6 @@ function setGif(gif) {
   gif = gif.substring(7)
   gif = gif.substring(0, gif.length - 1)
   send(false, gif)
->>>>>>> a0ed4ce4c107831f0e26a739f4bb1e800c12e0e6
 }
 
 const textInput = ref("");
@@ -73,29 +65,12 @@ const onScrollBottom = () => {
           <img src="img/send.png" />
         </button>
         <discord-picker
-<<<<<<< HEAD
-          :value="textInput"
-          apiKey="34DXVAVB20QR"
-          @update:value="value = $event"
-          @emoji="setEmoji"
-          gif-format="md"
-          @gif="setGif"
-        />
-        <!-- <discord-picker
-          apiKey="34DXVAVB20QR"
-          :value="textInput"
-          gif-format="md"
-          @update:value="value = $event"
-          @gif="setGif"
-        /> -->
-=======
           @update:value="value = $event"
           @emoji="setEmoji"
           @gif="setGif"
           gif-format="md"
           apiKey="34DXVAVB20QR"
         />
->>>>>>> a0ed4ce4c107831f0e26a739f4bb1e800c12e0e6
       </div>
     </form>
   </section>
