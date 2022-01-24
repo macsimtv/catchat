@@ -6,11 +6,18 @@ import DiscordPicker from "vue3-discordpicker";
 import MessagesService from "../../services/module/messages";
 import ServerBar from "../block/ServerBar.vue";
 
+defineProps({
+  value: [String, Number],
+  gifFormat: String,
+  key: String,
+});
+
 function setEmoji(emoji) {
   console.log(emoji);
 }
 
 function setGif(gif) {
+  textInput.value += gif;
   console.log(gif);
 }
 
@@ -32,13 +39,12 @@ const send = async (e) => {
 
 onUpdated(() => {
   onScrollBottom();
-})
+});
 
 const onScrollBottom = () => {
   let messageContainer = document.querySelector(".home-chatbox__container");
   messageContainer.scrollTop = messageContainer.scrollHeight;
-}
-
+};
 </script>
 
 <template>
@@ -55,9 +61,14 @@ const onScrollBottom = () => {
         </button>
         <discord-picker
           :value="textInput"
-          gif-format="md"
           @update:value="value = $event"
           @emoji="setEmoji"
+        />
+        <discord-picker
+          apiKey="34DXVAVB20QR"
+          :value="textInput"
+          gif-format="md"
+          @update:value="value = $event"
           @gif="setGif"
         />
       </div>
