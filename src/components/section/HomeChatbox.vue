@@ -12,40 +12,26 @@ defineProps({
   key: String,
 });
 
-// defineProps: {
-// input: {
-//   type: Boolean,
-//   default: Boolean,
-// },
-// // input value
-// value: {
-//   type: [String, Number],
-//   default: null,
-// },
-// // return gif link with markdown format or html format
-// gifFormat: {
-//   type: String
-// },
-// // tenor.com API KEY
-// key: {
-//   type: String
-// }
-// }
-
 function setEmoji(emoji) {
-  console.log(emoji);
+  textInput.value += emoji
 }
 
 function setGif(gif) {
-  console.log(gif);
+  gif = gif.substring(7)
+  gif = gif.substring(0, gif.length - 1)
+  send(false, gif)
 }
 
 const textInput = ref("");
 
-const send = async (e) => {
+const send = async (e, imageLink) => {
+  let data = { Text: textInput.value }
+  if (imageLink){
+    data = {Image: imageLink}
+  }
   const isMessageSend = await MessagesService.sendMessage(
     state.currentChannel.id,
-    { Text: textInput.value }
+    data
   );
   if (isMessageSend) {
     textInput.value = "";
@@ -79,17 +65,11 @@ const onScrollBottom = () => {
           <img src="img/send.png" />
         </button>
         <discord-picker
-          :value="textInput"
           @update:value="value = $event"
           @emoji="setEmoji"
-        />
-        <discord-picker
-          apiKey="34DXVAVB20QR"
-          showEmoji="false"
-          :value="textInput"
-          gif-format="md"
-          @update:value="value = $event"
           @gif="setGif"
+          gif-format="md"
+          apiKey="34DXVAVB20QR"
         />
       </div>
     </form>
