@@ -23,7 +23,9 @@
                 />
                 <ServerChooseColor />
                 <button type="submit">Mettre a jour le serveur</button>
-                <button class="delete">Effacer le server</button>
+                <button class="delete" @click="deleteServ">
+                  Effacer le server
+                </button>
               </form>
             </div>
             <div class="modal__server-section" v-else="windw == 'user'">
@@ -115,7 +117,7 @@ async function updateServ() {
 }
 
 async function deleteServ() {
-  await ServiceChannel.deleteChannel(serv.value.id);
+  await ServiceChannel.deleteChannel(state.currentChannel.id);
   StoreRefresh.channels();
   emits("close");
 }
