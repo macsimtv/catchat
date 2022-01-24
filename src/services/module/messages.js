@@ -1,6 +1,6 @@
 import apiClient from "../http-comon";
 export default {
-  async listOfMessage(id, offset) {
+  async getAll(id, offset) {
     return await apiClient.get(`/protected/channel/${id}/messages/${offset}`, {
       headers: {
         authorization: "Bearer " + localStorage["token"],
