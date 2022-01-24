@@ -9,15 +9,11 @@ export default {
   },
 
   async createChannel(channel) {
-    return await apiClient.put(
-      `/protected/channel`,
-      channel,
-      {
-        headers: {
-          authorization: "Bearer " + localStorage["token"],
-        },
+    return await apiClient.put(`/protected/channel`, channel, {
+      headers: {
+        authorization: "Bearer " + localStorage["token"],
       },
-    );
+    });
   },
 
   async updateMetaChannel(id, channel) {
@@ -39,15 +35,14 @@ export default {
       },
     });
   },
-  async banUserFromChannel(idChannel, username, channel) {
+  async banUserFromChannel(idChannel, username) {
     return await apiClient.delete(
       `/msg/protected/channel/${idChannel}/user/${username}'`,
       {
         headers: {
           authorization: "Bearer " + localStorage["token"],
         },
-      },
-      channel
+      }
     );
   },
 

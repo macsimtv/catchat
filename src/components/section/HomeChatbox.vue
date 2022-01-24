@@ -1,8 +1,10 @@
 <script setup>
 import Message from "../block/Message.vue";
-import { ref } from "vue";
+import { ref, inject } from "vue";
+const {state, setStateProp} = inject("state")
 import DiscordPicker from "vue3-discordpicker";
 import ServerBar from "../block/ServerBar.vue";
+import msg from '../../services/module/messages'
 
 function setEmoji(emoji) {
   console.log(emoji);
@@ -11,6 +13,8 @@ function setEmoji(emoji) {
 function setGif(gif) {
   console.log(gif);
 }
+
+const textInput = ref("")
 
 // const message=ref('');
 const messages = [
@@ -62,16 +66,13 @@ const messages = [
 ];
 
 const send = async () => {
-  await fetch("https://edu.tardigrade.land/msg", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      username: username.value,
-      message: message.value,
-    }),
-  });
+ const isMessageSend = await msg.sendMessage(state.currentChannel.id, {Text: textInput.value})
+  if (isMessageSend){
+    textInput.value = ""
+  }else{
+    alert('le message ne s\'est pas envoyer')
+  }
 
-  message.value = "";
 };
 </script>
 
@@ -82,19 +83,19 @@ const send = async () => {
       <Message v-for="(msg, index) in messages" :msg="msg" :key="index" />
     </div>
     <form @submit.prevent="send">
-      <div class="form-controle">
-        <input placeholder="Aa" v-model="message" />
-        <button @click="send">
-          <img src="img/send.png" />
-        </button>
-        <discord-picker
-          :value="value"
-          gif-format="md"
-          @update:value="value = $event"
-          @emoji="setEmoji"
-          @gif="setGif"
-        />
-      </div>
-    </form>
+        <div class="form-controle">
+          <input placeholder="Aa" v-model="textInput" />
+          <button type="submit">
+            <img src="img/send.png" />
+          </button>
+          <discord-picker
+            :value="textInput"
+            gif-format="md"
+            @update:value="value = $event"
+            @emoji="setEmoji"
+            @gif="setGif"
+          />
+        </div>
+      </form>
   </section>
 </template>
