@@ -13,12 +13,11 @@ defineProps({
 });
 
 function setEmoji(emoji) {
-  console.log(emoji);
+  textInput.value += emoji;
 }
 
 function setGif(gif) {
   textInput.value += gif;
-  console.log(gif);
 }
 
 const textInput = ref("");
@@ -61,16 +60,19 @@ const onScrollBottom = () => {
         </button>
         <discord-picker
           :value="textInput"
+          apiKey="34DXVAVB20QR"
           @update:value="value = $event"
           @emoji="setEmoji"
+          gif-format="md"
+          @gif="setGif"
         />
-        <discord-picker
+        <!-- <discord-picker
           apiKey="34DXVAVB20QR"
           :value="textInput"
           gif-format="md"
           @update:value="value = $event"
           @gif="setGif"
-        />
+        /> -->
       </div>
     </form>
   </section>

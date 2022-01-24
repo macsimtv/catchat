@@ -21,6 +21,7 @@
                   type="url"
                   placeholder="Adresse de l'image du serveur"
                 />
+                <ServerChooseColor />
                 <button type="submit">Mettre a jour le serveur</button>
                 <button class="delete">Effacer le server</button>
               </form>
@@ -37,6 +38,7 @@
 import { inject, ref } from "vue";
 import ServiceChannel from "../../services/module/channel";
 import StoreRefresh from "../../store/actions";
+import ServerAddColor from "./ServerChooseColor.vue";
 
 const { state, setStateProp } = inject("state");
 const serv = ref({

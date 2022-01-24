@@ -1,0 +1,57 @@
+.server-add-color {
+    width: 75px;
+    height: 75px;
+
+    flex-shrink: 0;
+
+    background-color: $color;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    &__container {
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+}
+
+.server-color {
+    width: 75px;
+    height: 75px;
+  
+    flex-shrink: 0;
+  
+    position: relative;
+  
+    cursor: pointer;
+  
+    &__container {
+      width: 100%;
+      height: 100%;
+  
+      position: relative;
+  
+      overflow: hidden;
+      
+      border: 2px solid transparent;
+      border-radius: 50%;
+  
+      transition: all 0.2s ease-in-out;
+  
+      &:hover {
+        border-radius: 25px;
+      }
+  
+      &.active {
+        border-color: $color;
+      }
+    }
+  }
