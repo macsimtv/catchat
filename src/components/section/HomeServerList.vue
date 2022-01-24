@@ -23,6 +23,15 @@ function onChangeServer(id) {
   changeMessagesChannel();
 
   StoreRefresh.channels();
+  state.socket.close()
+  let socket = new WebSocket(`wss://edu.tardigrade.land/msg/ws/channel/${state.currentChannel.id}/token/${localStorage['token']}`);
+  setStateProp("socket", socket)
+  state.socket.onmessage = (msg) => {
+    let msgs = JSON.parse(JSON.stringify(state.messages))
+    msgs.push(JSON.parse(msg.data))
+    setStateProp('messages', msgs)
+  }
+  console.log('server change')
 }
 
 async function changeMessagesChannel() {
