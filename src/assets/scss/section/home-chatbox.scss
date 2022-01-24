@@ -1,31 +1,46 @@
 .home-chatbox {
-    flex: 1;
     height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
+
+    flex: 1;
+
+    padding: 10px;
+    
     background-color: $primary-color;
+
     border-radius: 15px;
 
     &__container {
-        margin: 15px;
-        margin-left: 25px;
-        margin-right: 25px;
         height: 100%;
 
         display: flex;
         flex-direction: column;
+
         gap: 25px;
+
+        padding: 10px;
     }
 
     &__message {
-        position: relative;
-        background-color: $secondary-color;
-        min-height: 50px;
         min-width: 30%;
         max-width: 80%;
+        min-height: 50px;
+
+        align-self: flex-start;
+        
+        position: relative;
+
+        background-color: $secondary-color;
+        
         border-radius: 15px;
         font-size: 12px;
-        align-self: flex-start;
         &--me {
             align-self: flex-end;
+
             background-color: $color;
         }
     }
@@ -97,9 +112,7 @@
 }
 
 .form-controle{
-    position: absolute;
-    bottom: 40px;
-    width: 60%;
+    position: relative;
     input{
         background-color: $secondary-color;
         min-height: 50px;

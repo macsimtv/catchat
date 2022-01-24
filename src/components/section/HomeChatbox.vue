@@ -78,7 +78,8 @@ const send = async () => {
   <section class="home-chatbox">
     <div class="home-chatbox__container">
       <Message v-for="(msg, index) in messages" :msg="msg" :key="index" />
-      <form @submit.prevent="send">
+    </div>
+    <form @submit.prevent="send">
         <div class="form-controle">
           <input placeholder="Aa" v-model="message" />
           <button @click="send">
@@ -93,6 +94,5 @@ const send = async () => {
           />
         </div>
       </form>
-    </div>
   </section>
 </template>
