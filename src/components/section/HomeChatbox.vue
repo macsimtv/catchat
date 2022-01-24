@@ -1,6 +1,6 @@
 <script setup>
 import Message from "../block/Message.vue";
-import { ref, inject } from "vue";
+import { ref, inject, onUpdated } from "vue";
 const { state, setStateProp } = inject("state");
 import DiscordPicker from "vue3-discordpicker";
 import MessagesService from "../../services/module/messages";
