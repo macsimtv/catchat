@@ -1,9 +1,9 @@
 <script setup>
 import Message from "../block/Message.vue";
 import { ref, inject } from "vue";
-const {state, setStateProp} = inject("state")
+const { state, setStateProp } = inject("state");
 import DiscordPicker from "vue3-discordpicker";
-import msg from '../../services/module/messages'
+import msg from "../../services/module/messages";
 
 function setEmoji(emoji) {
   console.log(emoji);
@@ -13,7 +13,7 @@ function setGif(gif) {
   console.log(gif);
 }
 
-const textInput = ref("")
+const textInput = ref("");
 
 // const message=ref('');
 const messages = [
@@ -65,13 +65,14 @@ const messages = [
 ];
 
 const send = async () => {
- const isMessageSend = await msg.sendMessage(state.currentChannel.id, {Text: textInput.value})
-  if (isMessageSend){
-    textInput.value = ""
-  }else{
-    alert('le message ne s\'est pas envoyer')
+  const isMessageSend = await msg.sendMessage(state.currentChannel.id, {
+    Text: textInput.value,
+  });
+  if (isMessageSend) {
+    textInput.value = "";
+  } else {
+    alert("le message ne s'est pas envoyer");
   }
-
 };
 </script>
 
@@ -81,19 +82,19 @@ const send = async () => {
       <Message v-for="(msg, index) in messages" :msg="msg" :key="index" />
     </div>
     <form @submit.prevent="send">
-        <div class="form-controle">
-          <input placeholder="Aa" v-model="textInput" />
-          <button type="submit">
-            <img src="img/send.png" />
-          </button>
-          <discord-picker
-            :value="textInput"
-            gif-format="md"
-            @update:value="value = $event"
-            @emoji="setEmoji"
-            @gif="setGif"
-          />
-        </div>
-      </form>
+      <div class="form-controle">
+        <input placeholder="Aa" v-model="textInput" />
+        <button type="submit">
+          <img src="img/send.png" />
+        </button>
+        <discord-picker
+          :value="textInput"
+          gif-format="md"
+          @update:value="value = $event"
+          @emoji="setEmoji"
+          @gif="setGif"
+        />
+      </div>
+    </form>
   </section>
 </template>
