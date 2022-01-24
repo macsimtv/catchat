@@ -5,6 +5,7 @@ const store = reactive({
   messages: [],
   currentChannel: {},
   loading: false,
+  socket: {}
 });
 
 const setStateProp = (propName, newValue) => {

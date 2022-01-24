@@ -9,7 +9,7 @@ import ServiceMessages from "../services/module/messages";
 import { onMounted, inject, onUpdated } from "vue";
 /* import store from "../store/index"; */
 const { state, setStateProp } = inject("state");
-let socket;
+
 
 // Get Data
 onMounted(async () => {
@@ -22,14 +22,13 @@ onMounted(async () => {
   let dataMessages = await ServiceMessages.getAll(state.currentChannel.id, 0);
   setStateProp("messages", dataMessages.data);
 
-  socket = new WebSocket(`wss://edu.tardigrade.land/msg/ws/channel/${state.currentChannel.id}/token/${localStorage['token']}`);
-
-  socket.addEventListener('open', function (event) {
-    socket.send('Coucou le serveur !');
-    console.log('et sa fais bim bam boum')
+  let socket = new WebSocket(`wss://edu.tardigrade.land/msg/ws/channel/${state.currentChannel.id}/token/${localStorage['token']}`);
+  setStateProp("socket", socket)
+  state.socket.addEventListener('open', function (event) {
+    console.log('socket connection successful');
   });
 
-  socket.onmessage = (msg) => {
+  state.socket.onmessage = (msg) => {
     let msgs = JSON.parse(JSON.stringify(state.messages))
     msgs.push(JSON.parse(msg.data))
     setStateProp('messages', msgs)
