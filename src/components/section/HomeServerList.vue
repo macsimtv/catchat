@@ -27,9 +27,9 @@ function onChangeServer(id) {
 
 async function changeMessagesChannel() {
   // Messages
-  let dataMessages = await ServiceMessages.listOfMessage(
+  let dataMessages = await ServiceMessages.getAll(
     state.currentChannel.id,
-    40
+    0
   );
   setStateProp("messages", dataMessages.data);
 }
