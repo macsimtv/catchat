@@ -28,8 +28,10 @@
 
   &__body-bis {
     width: 90%;
-    max-width: 900px;
-
+    max-width: 740px;
+    border-radius: 20px;
+    padding: 1rem;
+    background-color: $color;
     position: relative;
     z-index: 10;
   }
@@ -72,6 +74,11 @@
       border: 0;
       border-radius: 10px;
       background: #28264f;
+
+      &.delete {
+        margin-top: 1rem;
+        background: rgb(220 38 38);
+      }
     }
   }
 
@@ -84,6 +91,34 @@
     left: 0;
 
     background-color: rgba(0, 0, 0, 0.644);
+  }
+
+  &__server-option {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 0.5rem;
+    & h3 {
+      color: $primary-color;
+      padding: 0.5rem 1rem;
+      border-radius: 0.75rem;
+      &:hover {
+        background-color: $secondary-color;
+        color: $color;
+      }
+
+      &:active {
+        background-color: $secondary-color;
+        color: $color;
+      }
+    }
+  }
+
+  &__server-section {
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+      0 4px 6px -4px rgb(0 0 0 / 0.1);
+    padding: 0.1rem;
+    border-radius: 20px;
+    overflow: hidden;
   }
 }
 

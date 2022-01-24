@@ -4,12 +4,12 @@
       ><div class="modal" @keydown.esc="$emit('close')">
         <div class="modal__container">
           <div class="modal__body-bis">
-            <div class="server-option">
-              <h3 @click="windw == 'edit'">Edit Server</h3>
-              <h3 @click="windw == 'user'">User's List</h3>
+            <div class="modal__server-option">
+              <h3 @click="windw = 'edit'">Edit Server</h3>
+              <h3 @click="windw = 'user'">User's List</h3>
             </div>
 
-            <div v-if="windw == 'edit'">
+            <div class="modal__server-section" v-if="windw == 'edit'">
               <form class="modal__form" @submit.prevent="updateServ">
                 <input
                   v-model="serv.name"
@@ -22,9 +22,10 @@
                   placeholder="Adresse de l'image du serveur"
                 />
                 <button type="submit">Mettre a jour le serveur</button>
+                <button class="delete">Effacer le server</button>
               </form>
             </div>
-            <div v-else="windw == 'user'"></div>
+            <div class="modal__server-section" v-else="windw == 'user'"></div>
           </div>
           <div @click="$emit('close')" class="modal__background"></div>
         </div></div
@@ -43,7 +44,7 @@ const serv = ref({
   img: state.currentChannel.img,
   theme: null,
 });
-const windw = "edit";
+const windw = ref("edit");
 const users = ref([]);
 users.value = state.currentChannel.users;
 const emits = defineEmits(["close"]);
@@ -64,7 +65,7 @@ async function deleteServ() {
 }
 
 async function banUser() {
-  await ServiceChannel.banUserFromChannel(serv.value.id);
+  await ServiceChannel.banUserFromChannel(serv.value.id, users.value[0]);
   StoreRefresh.channels();
 }
 </script>
