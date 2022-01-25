@@ -1,5 +1,5 @@
 <script setup>
-import { inject, ref } from "vue";
+import { inject, ref, computed } from "vue";
 import ServiceMessages from "../../services/module/messages";
 import ServiceChannel from "../../services/module/channel";
 const { state, setStateProp } = inject("state");
@@ -12,6 +12,44 @@ import StoreRefresh from "../../store/actions";
 import ServerChooseColor from "../block/ServerChooseColor.vue";
 
 let isModalOpen = ref(false);
+const theme = ref([
+  {
+    primary_color: "#35356c",
+    primary_color_dark: "#35356c",
+    accent_color: "#28264f",
+    text_color: "#fff",
+    accent_text_color: "#fff",
+  },
+  {
+    primary_color: "#63372C",
+    primary_color_dark: "#63372C",
+    accent_color: "#262322",
+    text_color: "#fff",
+    accent_text_color: "#fff",
+  },
+  {
+    primary_color: "#1F7A8C",
+    primary_color_dark: "#1F7A8C",
+    accent_color: "#022B3A",
+    text_color: "#fff",
+    accent_text_color: "#fff",
+  },
+]);
+const loadTheme = computed(() => {
+  if (state.currentChannel !== null) {
+    if (
+      state.currentChannel.theme?.primary_color == theme.value[1].primary_color
+    ) {
+      return "theme--chocolate";
+    }
+    if (
+      state.currentChannel.theme?.primary_color == theme.value[2].primary_color
+    ) {
+      return "theme--ocean";
+    }
+  }
+  return "";
+});
 
 const serverOptions = ref({
   name: "",
@@ -29,7 +67,8 @@ function onChangeServer(id) {
   const newCurrentChannel = state.channels.find((item) => item.id == id);
   setStateProp("currentChannel", newCurrentChannel);
   changeMessagesChannel();
-
+  document.querySelector("html").className = "";
+  document.querySelector("html").classList.add(loadTheme.value);
   StoreRefresh.channels();
   state.socket.close();
   let socket = new WebSocket(
