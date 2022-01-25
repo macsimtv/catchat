@@ -99,7 +99,7 @@ const { state, setStateProp } = inject("state");
 const serv = ref({
   name: state.currentChannel.name,
   img: state.currentChannel.img,
-  theme: state.currentChannel.theme,
+  theme: state.currentChannel.theme || null,
 });
 
 const userSearch = ref("");
