@@ -9,6 +9,7 @@ import ServerAddIcon from "../block/ServerAddIcon.vue";
 import ServerLoading from "../block/ServerLoading.vue";
 
 import StoreRefresh from "../../store/actions";
+import ServerChooseColor from "../block/ServerChooseColor.vue";
 
 let isModalOpen = ref(false);
 
@@ -23,23 +24,22 @@ function onChangeServer(id) {
   changeMessagesChannel();
 
   StoreRefresh.channels();
-  state.socket.close()
-  let socket = new WebSocket(`wss://edu.tardigrade.land/msg/ws/channel/${state.currentChannel.id}/token/${localStorage['token']}`);
-  setStateProp("socket", socket)
+  state.socket.close();
+  let socket = new WebSocket(
+    `wss://edu.tardigrade.land/msg/ws/channel/${state.currentChannel.id}/token/${localStorage["token"]}`
+  );
+  setStateProp("socket", socket);
   state.socket.onmessage = (msg) => {
-    let msgs = JSON.parse(JSON.stringify(state.messages))
-    msgs.push(JSON.parse(msg.data))
-    setStateProp('messages', msgs)
-  }
-  console.log('server change')
+    let msgs = JSON.parse(JSON.stringify(state.messages));
+    msgs.push(JSON.parse(msg.data));
+    setStateProp("messages", msgs);
+  };
+  console.log("server change");
 }
 
 async function changeMessagesChannel() {
   // Messages
-  let dataMessages = await ServiceMessages.getAll(
-    state.currentChannel.id,
-    0
-  );
+  let dataMessages = await ServiceMessages.getAll(state.currentChannel.id, 0);
   setStateProp("messages", dataMessages.data);
 }
 
@@ -94,6 +94,8 @@ async function onCreateServer() {
                 type="url"
                 placeholder="Adresse de l'image du serveur"
               />
+
+              <ServerChooseColor></ServerChooseColor>
               <button type="submit">Créer le serveur</button>
             </form>
           </div>

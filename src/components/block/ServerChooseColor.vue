@@ -1,15 +1,31 @@
 <template>
   <div class="server-choose-color">
-    <h1 class="server-choose-color__title">Choisissez votre thème</h1>
+    <h4 class="server-choose-color__title">Choisissez votre thème</h4>
   </div>
   <div class="server-color__container">
     <div>
-      primary Color
-      <div v-for="color in colors" class="server-color__ring"></div>
+      Normal
+      <div
+        @click="selected = 'normal'"
+        class="server-color server-color__ring"
+        :class="{ active: selected == 'normal' }"
+      ></div>
     </div>
     <div>
-      accent Color
-      <div v-for="color in colors" class="server-color__ring"></div>
+      chocolat
+      <div
+        @click="selected = 'chocolat'"
+        class="server-color server-color__ring theme--chocolate"
+        :class="{ active: selected == 'chocolat' }"
+      ></div>
+    </div>
+    <div>
+      ocean
+      <div
+        @click="selected = 'ocean'"
+        class="server-color server-color__ring theme--ocean"
+        :class="{ active: selected == 'ocean' }"
+      ></div>
     </div>
   </div>
 </template>
@@ -17,12 +33,11 @@
 <script setup>
 import { inject, ref } from "vue";
 
-const colors = ref([""]);
-const selectedColors = ref({
-  primary: "",
-  accentColor: "",
-  textColor: "",
-  accentTextColor: "",
+const props = defineProps({
+  selectedColors: Object,
 });
+const theme = ref([{}, {}]);
+const selected = ref("normal");
+
 const { state } = inject("state");
 </script>

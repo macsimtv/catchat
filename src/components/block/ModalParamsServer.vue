@@ -90,7 +90,7 @@
 import { inject, ref, computed } from "vue";
 import ServiceChannel from "../../services/module/channel";
 import StoreRefresh from "../../store/actions";
-import ServerAddColor from "./ServerChooseColor.vue";
+import ServerChooseColor from "./ServerChooseColor.vue";
 
 const { state, setStateProp } = inject("state");
 const serv = ref({
@@ -99,6 +99,12 @@ const serv = ref({
   theme: null,
 });
 
+const selectedColors = ref({
+  primary: "",
+  accent_color: "",
+  text_color: "",
+  accent_text_color: "",
+});
 const userSearch = ref("");
 const windw = ref("edit");
 const users = ref([]);
