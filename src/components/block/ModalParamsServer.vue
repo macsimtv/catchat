@@ -21,7 +21,10 @@
                   type="url"
                   placeholder="Adresse de l'image du serveur"
                 />
-                <ServerChooseColor />
+                <ServerChooseColor
+                  :selectedTheme="serv.theme"
+                  @change-theme="updateTheme"
+                />
                 <button type="submit">Mettre a jour le serveur</button>
                 <button class="delete" @click="deleteServ">
                   Effacer le server
@@ -96,20 +99,18 @@ const { state, setStateProp } = inject("state");
 const serv = ref({
   name: state.currentChannel.name,
   img: state.currentChannel.img,
-  theme: null,
+  theme: state.currentChannel.theme,
 });
 
-const selectedColors = ref({
-  primary: "",
-  accent_color: "",
-  text_color: "",
-  accent_text_color: "",
-});
 const userSearch = ref("");
 const windw = ref("edit");
 const users = ref([]);
 users.value = state.currentChannel.users;
 const emits = defineEmits(["close"]);
+
+function updateTheme(theme) {
+  serv.value.theme = theme;
+}
 
 const filteredUser = computed(() => {
   return users.value.filter((u) => u.match(userSearch.value));

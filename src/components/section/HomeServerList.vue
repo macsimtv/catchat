@@ -16,6 +16,13 @@ let isModalOpen = ref(false);
 const serverOptions = ref({
   name: "",
   img: "",
+  theme: {
+    primary_color: "#35356c",
+    primary_color_dark: "#35356c",
+    accent_color: "#28264f",
+    text_color: "#fff",
+    accent_text_color: "#fff",
+  },
 });
 
 function onChangeServer(id) {
@@ -43,10 +50,16 @@ async function changeMessagesChannel() {
   setStateProp("messages", dataMessages.data);
 }
 
+function setupThemeNewChannel(theme) {
+  console.log(theme);
+  serverOptions.value.theme = theme;
+}
+
 async function onCreateServer() {
   const newChannel = await ServiceChannel.createChannel(serverOptions.value);
   serverOptions.value.name = "";
   serverOptions.value.img = "";
+  serverOptions.value.theme = {};
   StoreRefresh.channels();
 
   isModalOpen.value = !isModalOpen.value;
@@ -95,7 +108,10 @@ async function onCreateServer() {
                 placeholder="Adresse de l'image du serveur"
               />
 
-              <ServerChooseColor></ServerChooseColor>
+              <ServerChooseColor
+                :selectedTheme="serverOptions.theme"
+                @change-theme="setupThemeNewChannel"
+              ></ServerChooseColor>
               <button type="submit">Créer le serveur</button>
             </form>
           </div>
