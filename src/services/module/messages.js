@@ -20,15 +20,16 @@ export default {
     );
   },
 
-  async moderateMessage(message) {
+  async moderateMessage(id, message) {
     return await apiClient.post(
-      "/protected/channel/54/message/moderate",
+      `/protected/channel/${id}/message/moderate`,
+      message,
       {
         headers: {
           authorization: "Bearer " + localStorage["token"],
         },
       },
-      message
+      
     );
   },
 };

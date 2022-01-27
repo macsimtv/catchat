@@ -45,6 +45,10 @@
 
             background-color: $color;
         }
+
+        &--clickable {
+            cursor: pointer;
+        }
     }
 
     &__message-title {
