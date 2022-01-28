@@ -5,6 +5,7 @@
     @keydown.esc="onClose"
     tabindex="0"
     ref="userList"
+    v-click-outside="onClose"
   >
     <div class="home-user-list__container">
       <h3 class="home-user-list__title">Liste des utilisateurs</h3>
@@ -31,7 +32,7 @@ const userList = ref("");
 function onClose() {
   setStateProp("toggleUserList", false);
 }
-/* 
+/*
 function onOpenUserList() {
   isOpen.value = true;
 } */
