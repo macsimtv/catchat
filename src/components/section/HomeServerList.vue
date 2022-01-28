@@ -67,8 +67,11 @@ function onChangeServer(id) {
   const newCurrentChannel = state.channels.find((item) => item.id == id);
   setStateProp("currentChannel", newCurrentChannel);
   changeMessagesChannel();
-  document.querySelector("html").className = "";
-  document.querySelector("html").classList.add(loadTheme.value);
+  let html = document.querySelector('html');
+  html.className = "";
+  if(loadTheme.value) {
+    html.classList.add(loadTheme.value)
+  }
   StoreRefresh.channels();
   state.socket.close();
   let socket = new WebSocket(

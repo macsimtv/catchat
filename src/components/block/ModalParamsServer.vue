@@ -134,7 +134,6 @@ async function banUser(user) {
   await ServiceChannel.banUserFromChannel(state.currentChannel.id, user);
   let userList = state.currentChannel.users;
   userList = userList.filter((u) => u !== user);
-  console.log(userList);
   StoreRefresh.channels();
   emits("close");
 }
