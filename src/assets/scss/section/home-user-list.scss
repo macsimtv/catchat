@@ -5,6 +5,26 @@
 
     border-radius: 15px;
 
+    @media screen and (max-width: 768px) {
+        height: calc(100% - 30px);
+
+        margin: 15px;
+
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        border: 1px solid #fff;
+        
+        transform: translateX(calc(15px + 100%));
+        
+        transition: transform .5s ease;
+
+        &.active {
+            transform: unset;
+        }
+    }
+
     &__container {
         padding: 20px 15px;
     }

@@ -104,6 +104,9 @@
         margin-top: 3px;
         font-size: 17px;
         color: $color;
+
+        position: relative;
+
         &--me {
             text-align: right;
             color: black;
@@ -112,8 +115,28 @@
 
     &__message-date {
         color: $color;
+
+        @media screen and (max-width: 768px) {
+            position: absolute;
+            top: 0;
+            right: 0;
+
+            transform: translateY(-100%);
+        }
+
         &--me {
             color: black;
+
+            @media screen and (max-width: 768px) {
+                position: absolute;
+                top: 0;
+                right: unset;
+                left: 0;
+
+                color: $color;
+    
+                transform: translateY(-100%);
+            }
         }
     }
 

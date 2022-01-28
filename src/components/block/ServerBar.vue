@@ -6,6 +6,8 @@ const { state, setStateProp } = inject("state");
 import ModalParamsServer from "./ModalParamsServer.vue";
 import ModalInvite from "./ModalInvite.vue";
 
+const emit = defineEmits(['onOpenUserList']);
+
 const isOpen = ref(false);
 const isModalInviteOpen = ref(false);
 
@@ -25,6 +27,11 @@ function onCloseModalInvite() {
 function onOpenModalInvite() {
   isModalInviteOpen.value = !isModalInviteOpen.value;
 }
+
+function onOpenUserList() {
+  emit("onOpenUserList");
+}
+
 </script>
 
 <template>
@@ -32,7 +39,29 @@ function onOpenModalInvite() {
     <div class="server-bar__container">
       <h2 class="server-bar__title">{{ state.currentChannel.name }}</h2>
       <div v-if="isOwner()" class="server-bar__menu">
-        <button class="server-bar__invite server-bar__button" @click="onOpenModalInvite()">
+        <button
+          class="server-bar__users server-bar__button"
+          @click="onOpenUserList"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+            />
+          </svg>
+        </button>
+        <button
+          class="server-bar__invite server-bar__button"
+          @click="onOpenModalInvite()"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-6 w-6"
@@ -81,5 +110,8 @@ function onOpenModalInvite() {
       </div>
     </div>
   </div>
-  <ModalInvite :isOpen="isModalInviteOpen" @onCloseModalInvite="onCloseModalInvite" />
+  <ModalInvite
+    :isOpen="isModalInviteOpen"
+    @onCloseModalInvite="onCloseModalInvite"
+  />
 </template>
