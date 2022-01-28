@@ -30,18 +30,6 @@ C'est une application qui reprent le principe de discord, envoie de message, cha
 - Modification des messages
 - Gestion et mise en place des thèmes
 
-
-## Usage/Examples
-
-```javascript
-import Component from 'my-project'
-
-function App() {
-  return <Component />
-}
-```
-
-
 ## Interface Demo
 ![Interface](https://i.imgur.com/kOP6a7P.png)
 
