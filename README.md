@@ -1,7 +1,61 @@
-# Vue 3 + Vite
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+# CATCHAT
 
-## Recommended IDE Setup
+CATCHAT est une application web réalisé dans le cadre d'un projet d'étude.
+C'est une application qui reprent le principe de discord, envoie de message, channel, gif, invitation, etc...
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+
+## Fonctionnalités
+
+#### Channels
+- Création de channel
+- Modification et suppression des channels par son créateur
+#### Messages
+- Envoie de messages
+- Modification par le créateur des messages
+- Envoie de GIF ou Emoji
+#### Auth
+- Login avec JWT
+
+
+## Installation
+
+```bash
+  npm install
+  npm run dev
+```
+    
+## Fonctionnalités ajoutées après l'oral
+
+- Modification des messages
+- Gestion et mise en place des thèmes
+
+
+## Usage/Examples
+
+```javascript
+import Component from 'my-project'
+
+function App() {
+  return <Component />
+}
+```
+
+
+## Interface Demo
+![Interface](https://i.imgur.com/kOP6a7P.png)
+
+![Interface](https://i.imgur.com/GTaP5jT.png)
+
+![Interface](https://i.imgur.com/IjDJ6mt.png)
+
+![Interface](https://i.imgur.com/od7cD7b.png)
+
+
+## Auteurs
+
+- [@bertyn](https://www.github.com/bertyn)
+- [@aya](https://www.github.com/bertyn)
+- [@romain](https://www.github.com/bertyn)
+- [@macsimtv](https://www.github.com/macsimtv)
+
