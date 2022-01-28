@@ -40,14 +40,63 @@
         
         border-radius: 10px;
         font-size: 12px;
+
+        &-edit {
+            width: 24px;
+            height: 24px;
+
+            padding: 2px;
+
+            position: absolute;
+            bottom: 0;
+            right: 20px;
+
+            transform: translateY(50%);
+
+            background-color: $primary-color;
+            color: $color;
+
+            stroke: $color;
+
+            border-radius: 5px;
+            border: 1px solid $color;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition: opacity 0.1s ease-in-out;
+
+            &:hover {
+                opacity: 1;
+                pointer-events: all;
+            }
+        }
+        
         &--me {
             align-self: flex-end;
 
             background-color: $color;
+            
+            .home-chatbox__message-edit {
+                background-color: $color;
+                color: $primary-color;
+
+                stroke: $primary-color;
+
+                border: 1px solid $primary-color;
+            }
         }
 
         &--clickable {
             cursor: pointer;
+        }
+
+        &:hover {
+            .home-chatbox__message-edit {
+                opacity: 1;
+                pointer-events: all;
+            }
         }
     }
 
