@@ -45,7 +45,7 @@ const props = defineProps({
     },
   },
 });
-console.log(props);
+
 const emits = defineEmits(["changeTheme"]);
 const theme = ref([
   {
