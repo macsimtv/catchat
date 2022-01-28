@@ -1,70 +1,60 @@
-const events = ["click"];
+const clickEventType = document.ontouchstart !== null ? "click" : "touchstart";
 
-function onClickOutside({ event, el, handler, middleware }) {
-  const isClickOutside = event.target !== el && !el.contains(event.target);
+const UNIQUE_ID = "__vue_click_away__";
 
-  if (!isClickOutside || !middleware(event, el)) {
-    return null;
-  }
+const onMounted = (el, binding, vnode) => {
+  onUnmounted(el);
 
-  return handler(event, el);
-}
+  let vm = vnode.context;
+  let callback = binding.value;
 
-const instances = new Map();
+  let nextTick = false;
+  setTimeout(function () {
+    nextTick = true;
+  }, 0);
 
-//Requires loop to toggle events for several listeners of an element
-function toggleEventListeners(eventHandlers) {
-  return (action) => {
-    eventHandlers.forEach(({ event, handler }) => {
-      document[`${action}EventListener`](event, handler, true);
-    });
+  el[UNIQUE_ID] = (event) => {
+    if (
+      (!el || !el.contains(event.target)) &&
+      callback &&
+      nextTick &&
+      typeof callback === "function"
+    ) {
+      return callback.call(vm, event);
+    }
   };
-}
 
-//Validator function
-function processArgs(value) {
-  const isFunction = typeof value === "function";
-
-  if (!isFunction && typeof value !== "object") {
-    throw new Error(
-      `v-click-outside: Binding value should be a function or an object, ${typeof bindingValue} given`
-    );
-  }
-
-  return {
-    handler: isFunction ? value : value.handler,
-    middleware: value.middleware || (() => true),
-  };
-}
-
-//Now need adapter to handle several events for one Map element
-function eventAdapter(events, { el, handler, middleware }) {
-  return events.map((eventName) => ({
-    event: eventName,
-    handler: (event) => onClickOutside({ event, el, handler, middleware }),
-  }));
-}
-
-function bind(el, { value }) {
-  const { handler, middleware } = processArgs(value);
-  const eventHandlers = eventAdapter(events, { el, handler, middleware });
-
-  instances.set(el, eventHandlers);
-
-  toggleEventListeners(eventHandlers)("add");
-}
-
-function unbind(el) {
-  const eventHandlers = instances.get(el);
-
-  toggleEventListeners(eventHandlers)("remove");
-
-  instances.delete(el);
-}
-
-const directive = {
-  bind,
-  unbind,
+  document.addEventListener(clickEventType, el[UNIQUE_ID], false);
 };
 
-export default directive;
+const onUnmounted = (el) => {
+  document.removeEventListener(clickEventType, el[UNIQUE_ID], false);
+  delete el[UNIQUE_ID];
+};
+
+const onUpdated = (el, binding, vnode) => {
+  if (binding.value === binding.oldValue) {
+    return;
+  }
+  onMounted(el, binding, vnode);
+};
+
+const plugin = {
+  install: (app) => {
+    app.directive("click-away", directive);
+  },
+};
+
+const directive = {
+  mounted: onMounted,
+  updated: onUpdated,
+  unmounted: onUnmounted,
+};
+
+const mixin = {
+  directives: { ClickAway: directive },
+};
+
+export { directive, mixin };
+
+export default plugin;
