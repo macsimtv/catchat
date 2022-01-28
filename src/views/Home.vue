@@ -26,7 +26,6 @@ onMounted(async () => {
   );
   setStateProp("socket", socket);
   state.socket.addEventListener("open", function (event) {
-    console.log("socket connection successful");
   });
 
   state.socket.onmessage = (msg) => {

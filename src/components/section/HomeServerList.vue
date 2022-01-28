@@ -80,7 +80,6 @@ function onChangeServer(id) {
     msgs.push(JSON.parse(msg.data));
     setStateProp("messages", msgs);
   };
-  console.log("server change");
 }
 
 async function changeMessagesChannel() {
@@ -90,7 +89,6 @@ async function changeMessagesChannel() {
 }
 
 function setupThemeNewChannel(theme) {
-  console.log(theme);
   serverOptions.value.theme = theme;
 }
 
