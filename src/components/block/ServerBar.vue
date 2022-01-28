@@ -6,7 +6,7 @@ const { state, setStateProp } = inject("state");
 import ModalParamsServer from "./ModalParamsServer.vue";
 import ModalInvite from "./ModalInvite.vue";
 
-const emit = defineEmits(['onOpenUserList']);
+const emit = defineEmits(["onOpenUserList"]);
 
 const isOpen = ref(false);
 const isModalInviteOpen = ref(false);
@@ -29,9 +29,9 @@ function onOpenModalInvite() {
 }
 
 function onOpenUserList() {
+  setStateProp("toggleUserList", !state.toggleUserList);
   emit("onOpenUserList");
 }
-
 </script>
 
 <template>
