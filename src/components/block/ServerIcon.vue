@@ -1,5 +1,6 @@
 <script setup>
 import { inject, ref } from "vue";
+
 const { state, setStateProp } = inject("state");
 
 defineProps({

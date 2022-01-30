@@ -17,11 +17,8 @@ function onOpenUserList() {
   isOpen.value = true;
 }
 
-watch(
-  () => state.toggleUserList,
-  function () {
-    if (state.toggleUserList === true) {
-    }
+watch(() => state.toggleUserList, () => {
+    if (state.toggleUserList === true);
   }
 );
 

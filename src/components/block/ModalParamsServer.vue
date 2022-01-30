@@ -2,9 +2,11 @@
 import { inject, ref, computed } from "vue";
 import ServiceChannel from "../../services/module/channel";
 import StoreRefresh from "../../store/actions";
+
 import ServerChooseColor from "./ServerChooseColor.vue";
 
 const { state, setStateProp } = inject("state");
+
 const serv = ref({
   name: state.currentChannel.name,
   img: state.currentChannel.img,

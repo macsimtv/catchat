@@ -7,7 +7,6 @@ const router = useRouter();
 
 let username = ref("");
 let password = ref("");
-
 let error = ref("");
 
 async function login() {
