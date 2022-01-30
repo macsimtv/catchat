@@ -102,7 +102,9 @@
 
     &__message-title {
         margin-top: 3px;
+
         font-size: 17px;
+
         color: $color;
 
         position: relative;
@@ -143,27 +145,36 @@
     &__text {
         margin: 8px;
         margin-top: 0;
+
         color: $color;
+
         &--me {
             color: black;
         }
     }
 
     &__profil {
-        position: relative;
-        left: 0;
-        transform: translateX(-50%);
         width: 30px;
         height: 30px;
+
         display: flex;
         align-items: center;
         justify-content: center;
+
+        position: relative;
+        left: 0;
+
+        background-color: $secondary-color;
+
+        transform: translateX(-50%);
+        
         border: 1px solid $color;
         border-radius: 50%;
-        background-color: $secondary-color;
+        
         &--me {
             right: 0;
             left: unset;
+
             transform: translateX(50%);
         }
     }
@@ -172,18 +183,23 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        font-size: 10px;
+
         margin-right: 10px;
+
+        font-size: 10px;
+        
         &--me {
+            flex-direction: row-reverse;
+
             margin-left: 10px;
             margin-right: auto;
-            flex-direction: row-reverse;
         }
     }
 
     &__title-without-date {
         display: flex;
         justify-content: flex-start;
+
         &--me {
             flex-direction: row-reverse;
         }
@@ -192,33 +208,44 @@
 
 .form-controle{
     position: relative;
+    
     input{
-        background-color: $secondary-color;
-        min-height: 50px;
-        border-radius: 10px;
-        font-size: 14px;
-        padding: 10px;
         width: 100%;
+        min-height: 50px;
+
+        padding: 10px;
+
+        background-color: $secondary-color;
+
+        font-size: 14px;
+        
+        border-radius: 10px;
         border: none;
     }
     button{
-        background-color: $primary-color;
-        border: none;   
+        padding: 7px 13px;
+
         position: absolute; 
         right: 16px;
         top: 5px;
-        padding: 7px 13px;
+
+        background-color: $primary-color;
+
+        border: none;   
         border-radius: 10px;
     }
     .vue3-emojipicker{
-        background-color: $primary-color;
-        border: none;   
-        position: absolute !important; 
-        top: 5px;
-        border-radius: 10px;
-        right: 70px;
         margin-left: 0px ;
         padding: 8px 14px;
+
+        position: absolute !important; 
+        top: 5px;
+        right: 70px;
+
+        background-color: $primary-color;
+
+        border: none;   
+        border-radius: 10px;
 
         div.mt-4{
             margin-top: 0px !important;
