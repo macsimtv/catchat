@@ -8,9 +8,11 @@ import ServerChooseColor from "./ServerChooseColor.vue";
 const { state, setStateProp } = inject("state");
 
 const serv = ref({
+  creator: state.currentChannel.creator,
   name: state.currentChannel.name,
   img: state.currentChannel.img,
   theme: state.currentChannel.theme || null,
+  users: state.currentChannel.users,
 });
 
 const loadTheme = computed(() => {
