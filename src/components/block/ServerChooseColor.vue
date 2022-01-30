@@ -1,35 +1,3 @@
-<template>
-  <div class="server-choose-color">
-    <h4 class="server-choose-color__title">Choisissez votre thème</h4>
-  </div>
-  <div class="server-color__container">
-    <div>
-      Normal
-      <div
-        @click="change(0)"
-        class="server-color server-color__ring"
-        :class="{ active: selected == 'normal' }"
-      ></div>
-    </div>
-    <div>
-      chocolat
-      <div
-        @click="change(1)"
-        class="server-color server-color__ring theme--chocolate"
-        :class="{ active: selected == 'chocolat' }"
-      ></div>
-    </div>
-    <div>
-      ocean
-      <div
-        @click="change(2)"
-        class="server-color server-color__ring theme--ocean"
-        :class="{ active: selected == 'ocean' }"
-      ></div>
-    </div>
-  </div>
-</template>
-
 <script setup>
 import { inject, ref, computed } from "vue";
 
@@ -89,3 +57,35 @@ function change(id) {
   emits("changeTheme", theme.value[id]);
 }
 </script>
+
+<template>
+  <div class="server-choose-color">
+    <h4 class="server-choose-color__title">Choisissez votre thème</h4>
+  </div>
+  <div class="server-color__container">
+    <div>
+      Normal
+      <div
+        @click="change(0)"
+        class="server-color server-color__ring"
+        :class="{ active: selected == 'normal' }"
+      ></div>
+    </div>
+    <div>
+      chocolat
+      <div
+        @click="change(1)"
+        class="server-color server-color__ring theme--chocolate"
+        :class="{ active: selected == 'chocolat' }"
+      ></div>
+    </div>
+    <div>
+      ocean
+      <div
+        @click="change(2)"
+        class="server-color server-color__ring theme--ocean"
+        :class="{ active: selected == 'ocean' }"
+      ></div>
+    </div>
+  </div>
+</template>

@@ -1,3 +1,5 @@
+<script setup></script>
+
 <template>
   <div class="server-add-icon">
     <div class="server-add-icon__container">
@@ -19,4 +21,3 @@
   </div>
 </template>
 
-<script setup></script>

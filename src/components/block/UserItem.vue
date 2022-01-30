@@ -1,3 +1,14 @@
+<script setup>
+
+import { inject } from 'vue';
+
+const { state, setStateProp } = inject('state');
+
+defineProps({
+  user: String,
+});
+</script>
+
 <template>
   <div class="user-item">
     <div class="user-item__container">
@@ -14,14 +25,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-
-import { inject } from 'vue';
-
-const { state, setStateProp } = inject('state');
-
-defineProps({
-  user: String,
-});
-</script>

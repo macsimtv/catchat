@@ -1,3 +1,35 @@
+
+<script setup>
+import { onMounted, watch, inject, ref } from "vue";
+
+import UserItem from "../block/UserItem.vue";
+
+const { state, setStateProp } = inject("state");
+
+const isOpen = ref(false);
+const userList = ref("");
+
+function onClose() {
+  setStateProp("toggleUserList", false);
+}
+
+function onOpenUserList() {
+  isOpen.value = true;
+}
+
+watch(
+  () => state.toggleUserList,
+  function () {
+    if (state.toggleUserList === true) {
+    }
+  }
+);
+
+onMounted(() => {
+  userList.value.focus();
+});
+</script>
+
 <template>
   <section
     class="home-user-list"
@@ -17,37 +49,3 @@
     </div>
   </section>
 </template>
-
-<script setup>
-import { onMounted, watch, computed, inject, ref } from "vue";
-
-import UserItem from "../block/UserItem.vue";
-
-const { state, setStateProp } = inject("state");
-
-const isOpen = ref(false);
-const userList = ref("");
-function onClose() {
-  setStateProp("toggleUserList", false);
-}
-
-function onOpenUserList() {
-  isOpen.value = true;
-}
-
-watch(
-  () => state.toggleUserList,
-  function () {
-    console.log(state.toggleUserList);
-    if (state.toggleUserList === true) {
-      console.log(2);
-    }
-    console.log(state.toggleUserList);
-  }
-);
-
-onMounted(() => {
-  userList.value.focus();
-  console.log(state.toggleUserList);
-});
-</script>
