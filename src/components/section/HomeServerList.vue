@@ -1,9 +1,9 @@
 <script setup>
 // Methods
 import { inject, ref, computed } from "vue";
-import ServiceMessages from "../../services/module/messages";
-import ServiceChannel from "../../services/module/channel";
-import StoreRefresh from "../../store/actions";
+import serviceMessages from "../../services/module/messages";
+import serviceChannel from "../../services/module/channel";
+import storeRefresh from "../../store/actions";
 
 // Components
 import ServerIcon from "../block/ServerIcon.vue";
@@ -70,7 +70,7 @@ function onChangeServer(id) {
 
   if(loadTheme.value) html.classList.add(loadTheme.value);
 
-  StoreRefresh.channels();
+  storeRefresh.channels();
 
   state.socket.close();
   let socket = new WebSocket(`wss://edu.tardigrade.land/msg/ws/channel/${state.currentChannel.id}/token/${localStorage["token"]}`);
@@ -85,7 +85,7 @@ function onChangeServer(id) {
 }
 
 async function changeMessagesChannel() {
-  let dataMessages = await ServiceMessages.getAll(state.currentChannel.id, 0);
+  let dataMessages = await serviceMessages.getAll(state.currentChannel.id, 0);
   setStateProp("messages", dataMessages.data);
 }
 
@@ -94,11 +94,11 @@ function setupThemeNewChannel(theme) {
 }
 
 async function onCreateServer() {
-  const newChannel = await ServiceChannel.createChannel(serverOptions.value);
+  const newChannel = await serviceChannel.createChannel(serverOptions.value);
   serverOptions.value.name = "";
   serverOptions.value.img = "";
   serverOptions.value.theme = {};
-  StoreRefresh.channels();
+  storeRefresh.channels();
 
   isModalOpen.value = !isModalOpen.value;
 }
