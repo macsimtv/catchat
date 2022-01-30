@@ -1,8 +1,9 @@
 <script setup>
 import { onMounted, inject } from "vue";
 
-import ServiceChannel from "../services/module/channel";
-import ServiceMessages from "../services/module/messages";
+import serviceChannel from "../services/module/channel";
+import serviceMessages from "../services/module/messages";
+import StoreRefresh from "../store/actions";
 
 // Components
 import Header from "../components/Header.vue";
@@ -18,12 +19,12 @@ onMounted(async () => {
   setStateProp("loading", true);
 
   // Channels
-  const dataChannels = await ServiceChannel.listOfChannel();
+  const dataChannels = await serviceChannel.listOfChannel();
   setStateProp("channels", dataChannels.data);
   setStateProp("currentChannel", dataChannels.data[0]);
 
   // Messages
-  let dataMessages = await ServiceMessages.getAll(state.currentChannel.id, 0);
+  let dataMessages = await serviceMessages.getAll(state.currentChannel.id, 0);
   setStateProp("messages", dataMessages.data);
 
   let socket = new WebSocket(
@@ -38,6 +39,8 @@ onMounted(async () => {
     msgs.push(JSON.parse(msg.data));
     setStateProp("messages", msgs);
   };
+
+  StoreRefresh.theme();
 
   // End Loading
   setStateProp("loading", false);

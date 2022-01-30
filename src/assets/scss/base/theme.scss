@@ -5,6 +5,12 @@
 }
 
 .theme {
+  &--default {
+    --color: #fff;
+    --primary-color: #35356c;
+    --secondary-color: #28264f;
+  }
+  
   &--ocean {
     --color: #fff;
     --primary-color: #1F7A8C;

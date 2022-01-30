@@ -38,15 +38,6 @@ const theme = ref([
   },
 ]);
 
-
-const loadTheme = computed(() => {
-  if(state.currentChannel === null) return;
-
-  if(state.currentChannel.theme?.primary_color == theme.value[1].primary_color) return "theme--chocolate";
-
-  if (state.currentChannel.theme?.primary_color == theme.value[2].primary_color) return 'theme--ocean';
-});
-
 const serverOptions = ref({
   name: "",
   img: "",
@@ -65,12 +56,8 @@ function onChangeServer(id) {
 
   changeMessagesChannel();
 
-  let html = document.querySelector('html');
-  html.className = "";
-
-  if(loadTheme.value) html.classList.add(loadTheme.value);
-
   storeRefresh.channels();
+  storeRefresh.theme();
 
   state.socket.close();
   let socket = new WebSocket(`wss://edu.tardigrade.land/msg/ws/channel/${state.currentChannel.id}/token/${localStorage["token"]}`);
@@ -99,6 +86,7 @@ async function onCreateServer() {
   serverOptions.value.img = "";
   serverOptions.value.theme = {};
   storeRefresh.channels();
+  storeRefresh.theme();
 
   isModalOpen.value = !isModalOpen.value;
 }

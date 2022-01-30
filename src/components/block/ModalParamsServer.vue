@@ -15,21 +15,6 @@ const serv = ref({
   users: state.currentChannel.users,
 });
 
-const loadTheme = computed(() => {
-  if (state.currentChannel !== null) {
-    if (
-      state.currentChannel.theme?.primary_color == state.theme[1].primary_color
-    ) {
-      return "theme--chocolate";
-    }
-    if (
-      state.currentChannel.theme?.primary_color == state.theme[2].primary_color
-    ) {
-      return "theme--ocean";
-    }
-  }
-  return "";
-});
 const userSearch = ref("");
 const windw = ref("edit");
 const users = ref([]);
@@ -50,20 +35,17 @@ async function updateServ() {
     ...serv.value,
   });
   if (r) {
-    setStateProp("currentChannel", serv.value);
-    let html = document.querySelector("html");
-    html.className = "";
-    if (loadTheme.value) {
-      html.classList.add(loadTheme.value);
-    }
+    setStateProp("currentChannel", { id: state.currentChannel.id, ...serv.value });
   }
   StoreRefresh.channels();
+  StoreRefresh.theme();
   emits("close");
 }
 
 async function deleteServ() {
   await ServiceChannel.deleteChannel(state.currentChannel.id);
   StoreRefresh.channels();
+  StoreRefresh.theme();
   emits("close");
 }
 

@@ -45,7 +45,7 @@ const theme = ref([
 const selected = computed(() => {
   if (props.selectedTheme?.primary_color == theme.value[0].primary_color) return "normal";
 
-  if (props.selectedTheme?.primary_color == theme.value[1].primary_color) return "chocolate";
+  if (props.selectedTheme?.primary_color == theme.value[1].primary_color) return "chocolat";
 
   if (props.selectedTheme?.primary_color == theme.value[2].primary_color) return "ocean";
 });
@@ -64,7 +64,7 @@ function change(id) {
       Normal
       <div
         @click="change(0)"
-        class="server-color server-color__ring"
+        class="server-color server-color__ring theme--default"
         :class="{ active: selected == 'normal' }"
       ></div>
     </div>
