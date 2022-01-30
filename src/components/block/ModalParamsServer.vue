@@ -102,6 +102,21 @@ const serv = ref({
   theme: state.currentChannel.theme || null,
 });
 
+const loadTheme = computed(() => {
+  if (state.currentChannel !== null) {
+    if (
+      state.currentChannel.theme?.primary_color == state.theme[1].primary_color
+    ) {
+      return "theme--chocolate";
+    }
+    if (
+      state.currentChannel.theme?.primary_color == state.theme[2].primary_color
+    ) {
+      return "theme--ocean";
+    }
+  }
+  return "";
+});
 const userSearch = ref("");
 const windw = ref("edit");
 const users = ref([]);
@@ -110,6 +125,7 @@ const emits = defineEmits(["close"]);
 
 function updateTheme(theme) {
   serv.value.theme = theme;
+  /* setStateProp("currentChannel", serv.value); */
 }
 
 const filteredUser = computed(() => {
@@ -117,9 +133,17 @@ const filteredUser = computed(() => {
 });
 
 async function updateServ() {
-  await ServiceChannel.updateMetaChannel(state.currentChannel.id, {
+  const r = await ServiceChannel.updateMetaChannel(state.currentChannel.id, {
     ...serv.value,
   });
+  if (r) {
+    setStateProp("currentChannel", serv.value);
+    let html = document.querySelector("html");
+    html.className = "";
+    if (loadTheme.value) {
+      html.classList.add(loadTheme.value);
+    }
+  }
   StoreRefresh.channels();
   emits("close");
 }
