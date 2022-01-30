@@ -29,8 +29,11 @@ function onOpenModalInvite() {
 }
 
 function onOpenUserList() {
-  setStateProp("toggleUserList", !state.toggleUserList);
-  emit("onOpenUserList");
+  if (state.toggleUserList === false) {
+    setStateProp("toggleUserList", true);
+  } else {
+    setStateProp("toggleUserList", false);
+  }
 }
 </script>
 

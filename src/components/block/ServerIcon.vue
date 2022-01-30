@@ -1,21 +1,6 @@
-<template>
-  <div
-    @mouseenter="addServerName($event, channel.name)"
-    @mouseleave="removeServerName"
-    :data-channel-id="channel.id"
-    class="server-icon"
-  >
-    <div
-      class="server-icon__container"
-      :class="state.currentChannel.id == channel.id ? 'active' : ''"
-    >
-      <img class="server-icon__picture" :src="channel.img" alt="Serveur Icon" />
-    </div>
-  </div>
-</template>
-
 <script setup>
 import { inject, ref } from "vue";
+
 const { state, setStateProp } = inject("state");
 
 defineProps({
@@ -52,3 +37,19 @@ function removeServerName() {
   serverName.classList.remove("active");
 }
 </script>
+
+<template>
+  <div
+    @mouseenter="addServerName($event, channel.name)"
+    @mouseleave="removeServerName"
+    :data-channel-id="channel.id"
+    class="server-icon"
+  >
+    <div
+      class="server-icon__container"
+      :class="state.currentChannel.id == channel.id ? 'active' : ''"
+    >
+      <img class="server-icon__picture" :src="channel.img" alt="Serveur Icon" />
+    </div>
+  </div>
+</template>

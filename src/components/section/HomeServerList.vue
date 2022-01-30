@@ -1,15 +1,17 @@
 <script setup>
+// Methods
 import { inject, ref, computed } from "vue";
-import ServiceMessages from "../../services/module/messages";
-import ServiceChannel from "../../services/module/channel";
-const { state, setStateProp } = inject("state");
+import serviceMessages from "../../services/module/messages";
+import serviceChannel from "../../services/module/channel";
+import storeRefresh from "../../store/actions";
 
+// Components
 import ServerIcon from "../block/ServerIcon.vue";
 import ServerAddIcon from "../block/ServerAddIcon.vue";
 import ServerLoading from "../block/ServerLoading.vue";
-
-import StoreRefresh from "../../store/actions";
 import ServerChooseColor from "../block/ServerChooseColor.vue";
+
+const { state, setStateProp } = inject("state");
 
 let isModalOpen = ref(false);
 const theme = ref([
@@ -35,20 +37,14 @@ const theme = ref([
     accent_text_color: "#fff",
   },
 ]);
+
+
 const loadTheme = computed(() => {
-  if (state.currentChannel !== null) {
-    if (
-      state.currentChannel.theme?.primary_color == theme.value[1].primary_color
-    ) {
-      return "theme--chocolate";
-    }
-    if (
-      state.currentChannel.theme?.primary_color == theme.value[2].primary_color
-    ) {
-      return "theme--ocean";
-    }
-  }
-  return "";
+  if(state.currentChannel === null) return;
+
+  if(state.currentChannel.theme?.primary_color == theme.value[1].primary_color) return "theme--chocolate";
+
+  if (state.currentChannel.theme?.primary_color == theme.value[2].primary_color) return 'theme--ocean';
 });
 
 const serverOptions = ref({
@@ -66,18 +62,21 @@ const serverOptions = ref({
 function onChangeServer(id) {
   const newCurrentChannel = state.channels.find((item) => item.id == id);
   setStateProp("currentChannel", newCurrentChannel);
+
   changeMessagesChannel();
+
   let html = document.querySelector('html');
   html.className = "";
-  if(loadTheme.value) {
-    html.classList.add(loadTheme.value)
-  }
-  StoreRefresh.channels();
+
+  if(loadTheme.value) html.classList.add(loadTheme.value);
+
+  storeRefresh.channels();
+
   state.socket.close();
-  let socket = new WebSocket(
-    `wss://edu.tardigrade.land/msg/ws/channel/${state.currentChannel.id}/token/${localStorage["token"]}`
-  );
+  let socket = new WebSocket(`wss://edu.tardigrade.land/msg/ws/channel/${state.currentChannel.id}/token/${localStorage["token"]}`);
+
   setStateProp("socket", socket);
+
   state.socket.onmessage = (msg) => {
     let msgs = JSON.parse(JSON.stringify(state.messages));
     msgs.push(JSON.parse(msg.data));
@@ -86,8 +85,7 @@ function onChangeServer(id) {
 }
 
 async function changeMessagesChannel() {
-  // Messages
-  let dataMessages = await ServiceMessages.getAll(state.currentChannel.id, 0);
+  let dataMessages = await serviceMessages.getAll(state.currentChannel.id, 0);
   setStateProp("messages", dataMessages.data);
 }
 
@@ -96,11 +94,11 @@ function setupThemeNewChannel(theme) {
 }
 
 async function onCreateServer() {
-  const newChannel = await ServiceChannel.createChannel(serverOptions.value);
+  const newChannel = await serviceChannel.createChannel(serverOptions.value);
   serverOptions.value.name = "";
   serverOptions.value.img = "";
   serverOptions.value.theme = {};
-  StoreRefresh.channels();
+  storeRefresh.channels();
 
   isModalOpen.value = !isModalOpen.value;
 }

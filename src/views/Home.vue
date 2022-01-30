@@ -1,22 +1,27 @@
 <script setup>
+import { onMounted, inject } from "vue";
+
+import ServiceChannel from "../services/module/channel";
+import ServiceMessages from "../services/module/messages";
+
+// Components
 import Header from "../components/Header.vue";
 import HomeUserList from "../components/section/HomeUserList.vue";
 import HomeServerList from "../components/section/HomeServerList.vue";
 import HomeChatbox from "../components/section/HomeChatbox.vue";
-import ServiceChannel from "../services/module/channel";
-import ServiceMessages from "../services/module/messages";
 
-import { onMounted, inject, ref, computed, onUpdated } from "vue";
-/* import store from "../store/index"; */
 const { state, setStateProp } = inject("state");
 
 // Get Data
 onMounted(async () => {
-  // Channels
+  // Loading
   setStateProp("loading", true);
+
+  // Channels
   const dataChannels = await ServiceChannel.listOfChannel();
   setStateProp("channels", dataChannels.data);
   setStateProp("currentChannel", dataChannels.data[0]);
+
   // Messages
   let dataMessages = await ServiceMessages.getAll(state.currentChannel.id, 0);
   setStateProp("messages", dataMessages.data);

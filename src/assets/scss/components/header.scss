@@ -1,10 +1,13 @@
 
 .header{
     width: 100%;
-    padding: 10px;
-    background-color: $primary-color;
     height: 60px;
+
     display: flex;
+
+    padding: 10px;
+
+    background-color: $primary-color;
 }
 
 .logo{
@@ -14,6 +17,7 @@
 
 .header__container{
     width: 100%;
+
     display: flex ;
     justify-content: space-between ;
 }
@@ -27,29 +31,28 @@
     width: 25px;
     height: 30px;
 }
-.fade-enter-active,
-.fade-leave-active {
-  transition: all .5s ease-out;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
 
 .sub-menu {
+    width: max-content;
+
+    padding: 20px;
+
     position: absolute;
     top: 0;
     right: 0;
-    width: max-content;
-    border-radius: 0px 0px 13px 13px;
-    transform: translate(-10px, 60px);
-    padding: 20px;
+
     background-color: $primary-color;
+
+    border-radius: 0px 0px 13px 13px;
+
+    transform: translate(-10px, 60px);
+
     box-shadow:0px 5px 29px 15px rgba(0,0,0,0.27);
+    
     & a{
-        text-decoration: none;
         color: $color;
+
+        text-decoration: none;
         font-family: $font;
         font-size: 18px;
         font-weight: bold;

@@ -1,15 +1,22 @@
 <script setup>
-import Message from "../block/Message.vue";
 import { ref, inject, onUpdated } from "vue";
-const { state, setStateProp } = inject("state");
 import DiscordPicker from "vue3-discordpicker";
 import MessagesService from "../../services/module/messages";
+
+import Message from "../block/Message.vue";
 import ServerBar from "../block/ServerBar.vue";
+
+const { state, setStateProp } = inject("state");
+const textInput = ref("");
 
 defineProps({
   value: [String, Number],
   gifFormat: String,
   key: String,
+});
+
+onUpdated(() => {
+  onScrollBottom();
 });
 
 function setEmoji(emoji) {
@@ -22,17 +29,16 @@ function setGif(gif) {
   send(false, gif);
 }
 
-const textInput = ref("");
-
 const send = async (e, imageLink) => {
   let data = { Text: textInput.value };
-  if (imageLink) {
-    data = { Image: imageLink };
-  }
+
+  if (imageLink) data = { Image: imageLink };
+
   const isMessageSend = await MessagesService.sendMessage(
     state.currentChannel.id,
     data
   );
+
   if (isMessageSend) {
     textInput.value = "";
   } else {
@@ -41,10 +47,6 @@ const send = async (e, imageLink) => {
 
   onScrollBottom();
 };
-
-onUpdated(() => {
-  onScrollBottom();
-});
 
 const onScrollBottom = () => {
   let messageContainer = document.querySelector(".home-chatbox__container");

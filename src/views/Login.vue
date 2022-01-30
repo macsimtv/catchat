@@ -1,25 +1,23 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import auth from "../services/module/auth";
+import serviceAuth from "../services/module/auth";
 
 const router = useRouter();
 
 let username = ref("");
 let password = ref("");
-
 let error = ref("");
 
 async function login() {
   error.value = "";
 
-  const isConnected = await auth.login({
+  const isConnected = await serviceAuth.login({
     username: username.value,
     password: password.value,
   });
-  if (isConnected) {
-    router.push({ name: "Home" });
-  }
+  
+  if (isConnected) router.push({ name: "Home" });
 
   error.value = "Mauvaises informations de connexion";
 }

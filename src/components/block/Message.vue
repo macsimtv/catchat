@@ -1,8 +1,9 @@
 <script setup>
-import { format, render, cancel, register } from "timeago.js";
+import { format, register } from "timeago.js";
 import { inject, ref } from "vue";
-const { state, setStateProp } = inject("state");
 import serviceMessage from "../../services/module/messages";
+
+const { state, setStateProp } = inject("state");
 
 const props = defineProps({
   msg: Object,
